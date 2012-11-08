@@ -47,19 +47,19 @@ class Node
     return child1, child2
   end
   
-  def execute(world)
+  def execute(board)
     case @operation
     when :cs, :tb, :nn # Terminal arguments, do nothing
       nil
     when :ms, :mt, :not # One arg functions, execute these
-      method = world.method(@operation)
-      arg1   = world.method(@arg1.operation)
+      method = board.method(@operation)
+      arg1   = board.method(@arg1.operation)
       method.call( arg1.call )
     when :eq
-      method = world.method(@operation)
-      method.call( @arg1.execute(world), @arg2.execute(world) )
+      method = board.method(@operation)
+      method.call( @arg1.execute(board), @arg2.execute(board) )
     when :du
-      method = world.method(@operation)
+      method = board.method(@operation)
       #  :du must repeatedly call arg1 and arg2
       method.call( @arg1, @arg2 )
     end    
