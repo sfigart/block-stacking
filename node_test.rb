@@ -1,0 +1,253 @@
+require "test/unit"
+require_relative 'node'
+require_relative 'world'
+
+class TestNode < Test::Unit::TestCase
+  def setup
+    @functions = {}
+    @functions[:a] = 'a'
+    @functions[:b] = 'b'
+    @functions[:c] = 'c'
+    @functions[:d] = 'd'
+    @tree = Node.new(@functions[:a])
+  end
+
+  def setup_world
+    goal =  ["a","b","c"]
+    stack = ["a"]
+    table = ["c","b"]
+    @world = World.new(goal, stack, table)
+  end
+
+  def test_initialize
+    @tree.operation = @functions[:a]
+  end
+  
+  def test_add_arg
+    @child_node = Node.new(@functions[:b])
+    @tree.arg1 = @child_node
+    assert_equal(@child_node, @tree.arg1)
+
+    @child_node2 = Node.new(@functions[:c])    
+    @tree.arg2 = @child_node2
+    assert_equal(@child_node2, @tree.arg2)
+    
+    @child_node3 = Node.new(@functions[:d])
+    @node = @tree.arg1
+    @node.arg1 = @child_node3
+    assert_equal(@child_node3, @tree.arg1.arg1)  
+  end
+  
+  def test_count
+    assert_equal(1, @tree.count)
+
+    @child_node = Node.new(@functions[:b])
+    @tree.arg1 = @child_node
+    assert_equal(2, @tree.count)
+
+    @child_node2 = Node.new(@functions[:c])    
+    @tree.arg2 = @child_node2
+    assert_equal(3, @tree.count)
+
+    @child_node3 = Node.new(@functions[:d])
+    @node = @tree.arg2
+    @node.arg1 = @child_node3
+    assert_equal(4, @tree.count)    
+  end
+  
+  def test_terminal_arg
+    setup_world
+    @node = Node.new(:cs)
+
+    stack = @world.stack.clone
+    table = @world.table.clone
+    
+    assert_nothing_raised do
+      @node.execute(@world)
+    end
+    # Insure terminal arguments dont affect
+    # state of the world
+    assert_equal(stack, @world.stack)
+    assert_equal(table, @world.table)
+  end
+  
+  def test_execute_ms
+    setup_world
+    @node = Node.new(:ms)
+    @node.arg1 = Node.new(:nn)
+    
+    assert_equal("b", @world.nn)
+    assert_equal("a", @world.tb)
+    assert_equal("a", @world.cs)
+    
+    @node.execute(@world)
+    
+    assert_equal("ab", @world.stack.join)
+    assert_equal("c", @world.table.join)
+  end
+  
+  def test_execute_mt
+    setup_world
+    @node = Node.new(:mt)
+    @node.arg1 = Node.new(:tb)
+    
+    @node.execute(@world)
+    
+    assert_equal("", @world.stack.join)
+    assert_equal("abc", @world.table.sort.join)
+  end
+  
+  def test_execute_not
+    setup_world
+    @node = Node.new(:not)
+    @node.arg1 = Node.new(:cs)
+    
+    result = @node.execute(@world)
+    assert_equal(false, result)
+    
+    assert_equal("a", @world.stack.join)
+    assert_equal("bc", @world.table.sort.join)
+    
+    # Remove the last item from the stack
+    @node = Node.new(:mt)
+    @node.arg1 = Node.new(:cs)
+
+    @node.execute(@world)
+    assert_equal("", @world.stack.join)
+    
+    # Stack is empty, so not cs should be true
+    @node = Node.new(:not)
+    @node.arg1 = Node.new(:cs)    
+    result = @node.execute(@world)
+    assert_equal(true, result)
+  end
+
+  def test_execute_eq
+    setup_world
+    node = Node.new(:eq)
+    # true condition
+    node.arg1 = Node.new(:ms)
+    node.arg1.arg1 = Node.new(:nn)
+    # true condition
+    node.arg2 = Node.new(:mt)
+    node.arg2.arg1 = Node.new(:tb)
+    
+    assert( node.execute(@world) )   
+    
+    setup_world
+    node = Node.new(:eq)
+
+    #true condition
+    ms_func = Node.new(:ms)
+    ms_func.arg1 = Node.new(:nn)
+    node.arg1 = ms_func
+    
+    # false condition
+    not_func = Node.new(:not)
+    not_func.arg1 = Node.new(:cs)
+    node.arg2 = not_func    
+    
+    assert_equal(false, node.execute(@world) )   
+  end
+  
+  def test_execute_du
+    setup_world  
+    mt_cs = Node.new(:mt)
+    mt_cs.arg1 = Node.new(:cs)
+
+    not_cs = Node.new(:not)
+    not_cs.arg1 = Node.new(:cs)
+
+    node = Node.new(:du, mt_cs, not_cs)
+    
+    assert( node.execute(@world) )
+  end
+
+  def test_to_s
+    @node = Node.new(:ms)
+    @node.arg1 = Node.new(:nn)
+    
+    assert_equal("ms (nn)", @node.to_s)
+
+    @node = Node.new(:eq)
+    @node.arg1 = Node.new(:ms)
+    @node.arg1.arg1 = Node.new(:nn)
+    
+    @node.arg2 = Node.new(:mt)
+    @node.arg2.arg1 = Node.new(:cs)    
+    assert_equal("eq (ms (nn)), (mt (cs))", @node.to_s)
+  end
+
+  def test_node?
+    node = Node.new(:ms)
+    node.arg1 = Node.new(:nn)
+    assert(node.node?)
+    
+    node = Node.new(:eq)
+    node.arg1 = Node.new(:nn)
+    node.arg2 = Node.new(:nn)
+    assert(node.node?)
+    
+    node = Node.new(:cs)
+    assert_equal(false, node.node?)
+  end
+  
+  def test_leaf?
+    node = Node.new(:nn)
+    assert(node.leaf?)
+
+    node = Node.new(:ms)
+    node.arg1 = Node.new(:nn)
+    assert_equal(false, node.leaf?)
+  end
+  
+  def test_crossover
+    tree1 = Node.new(:ms, Node.new(:cs))
+    tree2 = Node.new(:mt, Node.new(:nn))
+    puts "\ntree1 #{tree1}"
+    puts "tree2 #{tree2}"
+    child1, child2 = tree1.crossover(tree2)
+    puts "child1 #{child1}"
+    puts "child2 #{child2}"
+    assert_not_equal(tree1.to_s, tree2.to_s)
+    assert_not_equal(child1.to_s, child2.to_s)
+  end
+
+  def test_node_type
+    [:cs, :tb, :nn].each do |operation|
+      node = Node.new(operation)
+      assert_equal(:terminal, node.node_type)
+    end
+
+    [:ms, :mt, :not].each do |operation|
+      node = Node.new(operation)
+      assert_equal(:one_arg, node.node_type)
+    end
+
+    [:du, :eq].each do |operation|
+      node = Node.new(operation)
+      assert_equal(:two_args, node.node_type)
+    end
+  end
+  
+  def setup_tree
+    @tree = Node.new(:du)
+    mt_cs = Node.new(:mt, Node.new(:cs))
+    not_cs = Node.new(:not, Node.new(:cs))
+    @tree.arg1 = mt_cs
+    @tree.arg2 = not_cs
+  end
+  
+  def test_get_random_node
+    setup_tree  
+    node = @tree.get_random_node
+    possible_nodes = @tree.dfs
+    # Make sure the selected node was part of the tree
+    assert(possible_nodes.include?(node))
+  end
+
+  def test_dfs
+    setup_tree
+    assert_equal(5, @tree.dfs.size)
+  end
+end
