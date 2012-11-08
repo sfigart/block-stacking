@@ -1,14 +1,16 @@
 require 'logger'
 
 class Board
-  @@boards = []
+  attr_reader   :goal
   attr_accessor :stack, :table
-  def initialize(stack_chars, table_chars)
+
+  def initialize(goal_chars,stack_chars, table_chars)
     @log = Logger.new(STDOUT)
     @log.level = Logger::DEBUG
-
-    @stack = stack_chars.split('') rescue []
-    @table = table_chars.split('') rescue []
+    
+    @goal  = goal_chars.nil?  ? [] : goal_chars.split('')
+    @stack = stack_chars.nil? ? [] : stack_chars.split('')
+    @table = table_chars.nil? ? [] : table_chars.split('')
   end
   
   def key
@@ -16,14 +18,18 @@ class Board
   end
   
   def to_s
-    "Stack: #{@stack.join} Table: #{@table.join}"
+    "Goal: #{@goal.join} Stack: #{@stack.join} Table: #{@table.join}"
+  end
+
+  def <=>(other)
+    self.key <=> other.key
   end
   
-  def self.load_test_cases(filename='boards.csv')
+  def self.load_test_cases(goal='universal', filename='boards.csv')
     boards = []
     File.open(filename).each do |line|
       stack, table = line.chomp.split(',')
-      boards << Board.new(stack, table)
+      boards << Board.new(goal, stack, table)
     end
     boards
   end
