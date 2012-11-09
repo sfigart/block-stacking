@@ -22,6 +22,22 @@ class Board
     "#{@stack.join}:#{@table.join}"
   end
   
+  def score
+    total = 0
+    
+    return @goal.size * 26 if @stack.empty?
+    
+    # For character in stack
+    for i in 0..@stack.size - 1
+      total += (@stack[i].ord - @goal[i].ord).abs
+    end
+    
+    # For each character leftover in table * 26 (length of alphabet)
+    total += @table.size * 26
+    
+    total
+  end
+  
   def to_s
     "Goal: #{@goal.join} Stack: #{@stack.join} Table: #{@table.join}"
   end

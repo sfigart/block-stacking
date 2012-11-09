@@ -15,6 +15,23 @@ class TestBoard < Test::Unit::TestCase
     assert_equal("a:cb",@board.key)
   end
   
+  def test_score
+    # stack = a table = cb
+    assert_equal(26 + 26, @board.score)
+    
+    # stack = '' table = abc
+    @board.mt(@board.cs)
+    assert_equal(26 + 26 + 26, @board.score)
+    
+    # add a, then b, then c
+    @board.ms(@board.nn)
+    assert_equal(26 + 26, @board.score)
+    @board.ms(@board.nn)
+    assert_equal(26, @board.score)
+    @board.ms(@board.nn)
+    assert_equal(0, @board.score)
+  end
+  
   def test_sort
     board2 = Board.new('def','f','de')
     boards = [board2, @board].sort
