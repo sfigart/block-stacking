@@ -12,6 +12,31 @@ class TestProgram < Test::Unit::TestCase
     @board = Board.new(@goal, @stack, @table)
   end
 
+  def setup_fitness
+    @program = Program.new
+    @program.add_score(26)
+    @program.add_score(26)
+  end
+  
+  def test_raw_fitness
+    setup_fitness
+    score = @program.scores.inject(0, :+)
+    assert_equal(52, score)
+    assert_equal(score, @program.raw_fitness)
+  end
+  
+  def test_adjusted_fitness
+    setup_fitness
+    assert_in_delta(0.018867925, @program.adjusted_fitness, 0.000000001)
+  end
+  
+  def test_normalized_fitness
+    setup_fitness
+    assert_in_delta(1, @program.normalized_fitness(@program.adjusted_fitness))
+    assert_in_delta(0.5, @program.normalized_fitness(@program.adjusted_fitness + @program.adjusted_fitness))
+    assert_in_delta(0.333, @program.normalized_fitness(@program.adjusted_fitness * 3))
+  end
+
   def test_simple_program
     node = Node.new(:mt, Node.new(:cs))
     program = Program.new(node, @board)
