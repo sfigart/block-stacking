@@ -14,20 +14,20 @@ class TestProgram < Test::Unit::TestCase
 
   def setup_fitness
     @program = Program.new
-    @program.add_score(26)
-    @program.add_score(26)
+    @program.add_score(25)
+    @program.add_score(25)
   end
   
   def test_raw_fitness
     setup_fitness
     score = @program.scores.inject(0, :+)
-    assert_equal(52, score)
+    assert_equal(50, score)
     assert_equal(score, @program.raw_fitness)
   end
   
   def test_adjusted_fitness
     setup_fitness
-    assert_in_delta(0.018867925, @program.adjusted_fitness, 0.000000001)
+    assert_in_delta(0.019607843, @program.adjusted_fitness, 0.000000001)
   end
   
   def test_normalized_fitness
@@ -44,7 +44,7 @@ class TestProgram < Test::Unit::TestCase
 
     assert_equal([], @board.stack)
     assert_equal('abc', @board.table.sort.join)
-    assert_equal(26 + 26 + 26, program.scores.first)
+    assert_equal(25 + 25 + 25, program.scores.first)
   end
 
   def test_simple_program2
@@ -60,7 +60,7 @@ class TestProgram < Test::Unit::TestCase
     
     assert_equal([], @board.stack)
     assert_equal('abc', @board.table.sort.join)
-    assert_equal(26 + 26 + 26, program.scores.first)
+    assert_equal(25 + 25 + 25, program.scores.first)
   end
 
   def test_simple_program3

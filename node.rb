@@ -86,14 +86,6 @@ class Node
     output << ", (#{@arg2})" if arg2
     output
   end
-
-  def marshal_dump
-    [@operation, @arg1, @arg2]
-  end
-  
-  def marshal_load(array)
-    @operation, @arg1, @arg2 = array
-  end
   
   def node_type
     case @operation
@@ -119,8 +111,17 @@ class Node
     nodes.concat( arg2.dfs ) if arg2
     nodes
   end
-    
+  
+  # Cloning Methods  
   def deep_clone
     Marshal::load(Marshal.dump(self))
+  end
+  
+  def marshal_dump
+    [@operation, @arg1, @arg2]
+  end
+  
+  def marshal_load(array)
+    @operation, @arg1, @arg2 = array
   end
 end

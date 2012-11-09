@@ -10,6 +10,9 @@ class TestWorld < Test::Unit::TestCase
   
   def test_initialize
     assert_equal(1, @world.programs.count)
-    assert_equal(166, @world.boards.count)
+  end
+  
+  def test_run
+    @world.run
   end
 end

@@ -14,6 +14,7 @@ class Program
   end
   
   def execute
+    @scores = []
     @boards.each do |board|
       @node.execute(board)
       add_score(board.score)

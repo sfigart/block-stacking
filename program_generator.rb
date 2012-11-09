@@ -16,7 +16,7 @@ module ProgramGenerator
   
   def build_one_arg_function(function_name)
     function = Node.new(function_name)
-    function.arg1 = Node.new(@terminal_arguments.sample)
+    function.arg1 = Node.new([:cs, :tb, :nn].sample)
 
     function
   end
@@ -38,9 +38,5 @@ module ProgramGenerator
     else
       build_two_arg_function( [:du, :eq].sample )
     end
-  end
-
-  def create_terminal_arguments
-    @terminal_arguments = [:cs, :tb, :nn]
   end
 end

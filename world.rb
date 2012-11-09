@@ -2,28 +2,29 @@ require 'logger'
 require_relative 'program_generator'
 require_relative 'board'
 require_relative 'node'
+require_relative 'program'
 
 class World
   include ProgramGenerator
   
-  attr_accessor :boards, :programs
+  attr_accessor :programs
   
   def initialize(program_count=1)
     @log = Logger.new(STDOUT)
     @log.level = Logger::DEBUG
     
     @programs = []
-    create_terminal_arguments
-    program_count.times { add_program(generate_random_program) }
-    
-    @boards = Board.load_test_cases
+    program_count.times { add_program( generate_random_program) }
   end
   
-  def add_program(program)
-    @programs << program
+  def add_program(node)
+    @programs << Program.new(node, Board.load_test_cases) # Need to clone each board!
   end
   
   def run
-    @programs.each {|program| program.execute(self)}
+    @programs.each_with_index do |program, index|
+      program.execute
+      @log.debug "%3d Raw Fitness:\t#{program.raw_fitness}\tAdjusted Fitness: #{program.adjusted_fitness}" % index
+    end
   end
 end

@@ -8,6 +8,8 @@ class Board
   
   attr_reader   :goal
   attr_accessor :stack, :table
+  
+  DISTANCE_PENALTY = 25
 
   def initialize(goal_chars,stack_chars, table_chars)
     @log = Logger.new(STDOUT)
@@ -25,7 +27,7 @@ class Board
   def score
     total = 0
     
-    return @goal.size * 26 if @stack.empty?
+    return @goal.size * DISTANCE_PENALTY if @stack.empty?
     
     # For character in stack
     for i in 0..@stack.size - 1
@@ -33,7 +35,7 @@ class Board
     end
     
     # For each character leftover in table * 26 (length of alphabet)
-    total += @table.size * 26
+    total += @table.size * DISTANCE_PENALTY
     
     total
   end
