@@ -1,28 +1,22 @@
 require 'logger'
-require_relative 'terminal_arguments'
-require_relative 'primitive_functions'
 require_relative 'program_generator'
+require_relative 'board'
 require_relative 'node'
 
 class World
-  include TerminalArguments
-  include PrimitiveFunctions
   include ProgramGenerator
   
-  attr_reader :goal, :stack, :table, :terminal_arguments, :programs
+  attr_accessor :boards, :programs
   
-  def initialize(goal, stack, table, program_count=1)
+  def initialize(program_count=1)
     @log = Logger.new(STDOUT)
     @log.level = Logger::DEBUG
     
-    @goal = goal
-    @stack = stack
-    @table = table
-    
-    create_terminal_arguments
-    
     @programs = []
+    create_terminal_arguments
     program_count.times { add_program(generate_random_program) }
+    
+    @boards = Board.load_test_cases
   end
   
   def add_program(program)
@@ -31,12 +25,5 @@ class World
   
   def run
     @programs.each {|program| program.execute(self)}
-  end
-  
-  def display
-    puts ''
-    puts "Goal :" + @goal.inspect
-    puts "Stack:" + @stack.inspect
-    puts "Table:" + @table.inspect
   end
 end

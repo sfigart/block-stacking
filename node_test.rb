@@ -1,6 +1,6 @@
 require "test/unit"
 require_relative 'node'
-require_relative 'world'
+require_relative 'board'
 
 class TestNode < Test::Unit::TestCase
   def setup
@@ -13,10 +13,10 @@ class TestNode < Test::Unit::TestCase
   end
 
   def setup_world
-    goal =  ["a","b","c"]
-    stack = ["a"]
-    table = ["c","b"]
-    @world = World.new(goal, stack, table)
+    goal =  'abc'
+    stack = 'a'
+    table = 'cb'
+    @board = Board.new(goal, stack, table)
   end
 
   def test_initialize
@@ -59,16 +59,16 @@ class TestNode < Test::Unit::TestCase
     setup_world
     @node = Node.new(:cs)
 
-    stack = @world.stack.clone
-    table = @world.table.clone
+    stack = @board.stack.clone
+    table = @board.table.clone
     
     assert_nothing_raised do
-      @node.execute(@world)
+      @node.execute(@board)
     end
     # Insure terminal arguments dont affect
     # state of the world
-    assert_equal(stack, @world.stack)
-    assert_equal(table, @world.table)
+    assert_equal(stack, @board.stack)
+    assert_equal(table, @board.table)
   end
   
   def test_execute_ms
@@ -76,14 +76,14 @@ class TestNode < Test::Unit::TestCase
     @node = Node.new(:ms)
     @node.arg1 = Node.new(:nn)
     
-    assert_equal("b", @world.nn)
-    assert_equal("a", @world.tb)
-    assert_equal("a", @world.cs)
+    assert_equal("b", @board.nn)
+    assert_equal("a", @board.tb)
+    assert_equal("a", @board.cs)
     
-    @node.execute(@world)
+    @node.execute(@board)
     
-    assert_equal("ab", @world.stack.join)
-    assert_equal("c", @world.table.join)
+    assert_equal("ab", @board.stack.join)
+    assert_equal("c", @board.table.join)
   end
   
   def test_execute_mt
@@ -91,10 +91,10 @@ class TestNode < Test::Unit::TestCase
     @node = Node.new(:mt)
     @node.arg1 = Node.new(:tb)
     
-    @node.execute(@world)
+    @node.execute(@board)
     
-    assert_equal("", @world.stack.join)
-    assert_equal("abc", @world.table.sort.join)
+    assert_equal("", @board.stack.join)
+    assert_equal("abc", @board.table.sort.join)
   end
   
   def test_execute_not
@@ -102,23 +102,23 @@ class TestNode < Test::Unit::TestCase
     @node = Node.new(:not)
     @node.arg1 = Node.new(:cs)
     
-    result = @node.execute(@world)
+    result = @node.execute(@board)
     assert_equal(false, result)
     
-    assert_equal("a", @world.stack.join)
-    assert_equal("bc", @world.table.sort.join)
+    assert_equal("a", @board.stack.join)
+    assert_equal("bc", @board.table.sort.join)
     
     # Remove the last item from the stack
     @node = Node.new(:mt)
     @node.arg1 = Node.new(:cs)
 
-    @node.execute(@world)
-    assert_equal("", @world.stack.join)
+    @node.execute(@board)
+    assert_equal("", @board.stack.join)
     
     # Stack is empty, so not cs should be true
     @node = Node.new(:not)
     @node.arg1 = Node.new(:cs)    
-    result = @node.execute(@world)
+    result = @node.execute(@board)
     assert_equal(true, result)
   end
 
@@ -132,7 +132,7 @@ class TestNode < Test::Unit::TestCase
     node.arg2 = Node.new(:mt)
     node.arg2.arg1 = Node.new(:tb)
     
-    assert( node.execute(@world) )   
+    assert( node.execute(@board) )   
     
     setup_world
     node = Node.new(:eq)
@@ -147,7 +147,7 @@ class TestNode < Test::Unit::TestCase
     not_func.arg1 = Node.new(:cs)
     node.arg2 = not_func    
     
-    assert_equal(false, node.execute(@world) )   
+    assert_equal(false, node.execute(@board) )   
   end
   
   def test_execute_du
@@ -160,7 +160,7 @@ class TestNode < Test::Unit::TestCase
 
     node = Node.new(:du, mt_cs, not_cs)
     
-    assert( node.execute(@world) )
+    assert( node.execute(@board) )
   end
 
   def test_to_s

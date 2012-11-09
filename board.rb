@@ -1,6 +1,11 @@
 require 'logger'
+require_relative 'terminal_arguments'
+require_relative 'primitive_functions'
 
 class Board
+  include TerminalArguments
+  include PrimitiveFunctions
+  
   attr_reader   :goal
   attr_accessor :stack, :table
 
