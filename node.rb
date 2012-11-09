@@ -28,21 +28,24 @@ class Node
     child1_node = child1.get_random_node
     child2_node = child2.get_random_node
     
+=begin    
     @log.debug "child1 #{child1.inspect}"
     @log.debug "child2 #{child2.inspect}"
     @log.debug "child1_node #{child1_node.inspect}"
     @log.debug "child2_node #{child2_node.inspect}"
-
+=end
     # Swap by attribute to keep parent object references intact
     child1_node.operation, child2_node.operation = child2_node.operation, child1_node.operation
     child1_node.arg1,      child2_node.arg1      = child2_node.arg1,      child1_node.arg1
     child1_node.arg2,      child2_node.arg2      = child2_node.arg2,      child1_node.arg2
     
+=begin    
     @log.debug "after swap"
     @log.debug "child1_node #{child1_node.inspect}"
     @log.debug "child2_node #{child2_node.inspect}"
     @log.debug "child1 #{child1.inspect}"
     @log.debug "child2 #{child2.inspect}"
+=end
 
     return child1, child2
   end

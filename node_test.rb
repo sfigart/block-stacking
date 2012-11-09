@@ -204,11 +204,11 @@ class TestNode < Test::Unit::TestCase
   def test_crossover
     tree1 = Node.new(:ms, Node.new(:cs))
     tree2 = Node.new(:mt, Node.new(:nn))
-    puts "\ntree1 #{tree1}"
-    puts "tree2 #{tree2}"
+    # puts "\ntree1 #{tree1}"
+    # puts "tree2 #{tree2}"
     child1, child2 = tree1.crossover(tree2)
-    puts "child1 #{child1}"
-    puts "child2 #{child2}"
+    # puts "child1 #{child1}"
+    # puts "child2 #{child2}"
     assert_not_equal(tree1.to_s, tree2.to_s)
     assert_not_equal(child1.to_s, child2.to_s)
   end
