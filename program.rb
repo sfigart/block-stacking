@@ -39,4 +39,8 @@ class Program
   def add_score(score)
     @scores << score
   end
+  
+  def display
+    node.to_s
+  end
 end

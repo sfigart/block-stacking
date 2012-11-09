@@ -23,8 +23,9 @@ class World
   
   def run
     @programs.each_with_index do |program, index|
+      @log.debug program.display
       program.execute
-      @log.debug "%3d Raw Fitness:\t#{program.raw_fitness}\tAdjusted Fitness: #{program.adjusted_fitness}" % index
+      @log.debug "#{index} Raw Fitness:\t#{program.raw_fitness}\tAdjusted Fitness: #{program.adjusted_fitness}"
     end
   end
 end
