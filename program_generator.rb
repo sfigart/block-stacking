@@ -26,7 +26,7 @@ module ProgramGenerator
 
   def build_two_arg_function(function_name, depth)
     # limit test
-    if depth >= @max_depth -1
+    if depth >= (@max_depth - 1)
       # Return 2 args of the same terminal operation
       arg1 = Node.new([:cs, :tb, :nn].sample)
       arg2 = Node.new(arg1.operation)
