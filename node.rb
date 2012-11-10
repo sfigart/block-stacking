@@ -11,6 +11,14 @@ class Node
     @arg2 = arg2
   end
   
+  def depth_count
+    left = right = 0
+    left += @arg1.depth_count if @arg1 && ![:cs, :tb, :nn].include?(@arg1.operation)
+    right += @arg2.depth_count if @arg2 && ![:cs, :tb, :nn].include?(@arg2.operation)
+
+    return 1 + [left, right].max
+  end
+  
   def count
     sum = 0
     sum += @arg1.count if @arg1

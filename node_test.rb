@@ -250,4 +250,21 @@ class TestNode < Test::Unit::TestCase
     setup_tree
     assert_equal(5, @tree.dfs.size)
   end
+  
+  def test_depth_count
+    @tree = Node.new(:du)
+    assert_equal(1, @tree.depth_count)
+    
+    mt_cs = Node.new(:mt, Node.new(:cs))
+    @tree.arg1 = mt_cs
+    assert_equal(2, @tree.depth_count)
+    
+    not_cs = Node.new(:not, Node.new(:cs))
+    @tree.arg2 = not_cs
+    assert_equal(2, @tree.depth_count)
+    
+    eq_op = Node.new(:eq, Node.new(:cs), Node.new(:cs))
+    @tree.arg2.arg2 = eq_op
+    assert_equal(3, @tree.depth_count)
+  end
 end

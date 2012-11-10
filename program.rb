@@ -4,6 +4,9 @@ class Program
   attr_reader :node, :scores, :boards
   
   def initialize(node=nil, boards=[])
+    @log = Logger.new(STDOUT)
+    @log.level = Logger::DEBUG
+    
     @node = node
     @boards = [*boards]
     @scores = []
