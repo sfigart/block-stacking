@@ -73,13 +73,8 @@ class Node
       method = board.method(@operation)
       method.call( @arg1.execute(board), @arg2.execute(board) )
     when :du
+      return true if @du_iteration_count >= @du_iteration_limit
       @du_iteration_count += 1
-      @log.debug "!!!!!!!#{self} #{@du_iteration_count}"
-      
-      if @du_iteration_count >= @du_iteration_limit
-        @log.debug "********* max iterations reached #{@du_iteration_count}"
-        return true
-      end
       method = board.method(@operation)
       #  :du must repeatedly call arg1 and arg2
       method.call( @arg1, @arg2 )
