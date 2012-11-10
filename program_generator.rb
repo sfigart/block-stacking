@@ -7,7 +7,6 @@ module ProgramGenerator
     
     functions = [:ms, :mt, :not, :du, :eq]
     function_name = functions.sample
-    @log.debug "generate_random_program #{function_name}"
     
     case function_name
     when :ms, :mt, :not
@@ -19,7 +18,6 @@ module ProgramGenerator
   end
   
   def build_one_arg_function(function_name)
-    @log.debug "build_one_arg_function #{function_name}"
     function = Node.new(function_name)
     function.arg1 = Node.new([:cs, :tb, :nn].sample)
 
@@ -27,13 +25,15 @@ module ProgramGenerator
   end
 
   def build_two_arg_function(function_name, depth)
-    @log.debug "build_two_arg_function #{function_name}, depth #{depth}"
-    return if depth >= @max_depth - 1
-    
-    @log.debug("arg1")
-    arg1 = build_arg_function(depth)
-    @log.debug("arg2")
-    arg2 = build_arg_function(depth)
+    # limit test
+    if depth >= @max_depth -1
+      # Return 2 args of the same terminal operation
+      arg1 = Node.new([:cs, :tb, :nn].sample)
+      arg2 = Node.new(arg1.operation)
+    else
+      arg1 = build_arg_function(depth)
+      arg2 = build_arg_function(depth)      
+    end
     
     function = Node.new(function_name)
     function.arg1 = arg1
@@ -43,7 +43,6 @@ module ProgramGenerator
   end
   
   def build_arg_function(depth)
-    @log.debug "build_arg_function depth #{depth}"
     if rand(2) == 1
       build_one_arg_function( [:ms, :mt, :not].sample )
     else

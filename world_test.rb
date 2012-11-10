@@ -17,7 +17,7 @@ class TestWorld < Test::Unit::TestCase
   end
   
   def test_run_5
-    @world = World.new(5)
+    @world = World.new(4)
     @world.run
   end
 end

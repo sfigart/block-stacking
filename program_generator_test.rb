@@ -17,14 +17,10 @@ class TestProgramGenerator < Test::Unit::TestCase
   
   def test_generate_random_program
     sizes = {}
-    100.times do
+    1000.times do
       program = @generator.generate_random_program
-      puts program.to_s
       sizes[program] = program.depth_count 
       assert_operator 4, :>=, program.depth_count
-    end
-    sizes.each_pair do |key, value|
-      puts "#{value}: #{key}"
     end
   end
   

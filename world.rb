@@ -15,6 +15,9 @@ class World
     
     @programs = []
     program_count.times { add_program( generate_random_program) }
+    @programs.each do |program|
+      @log.debug "#{program.to_s}"
+    end
   end
   
   def add_program(node)
