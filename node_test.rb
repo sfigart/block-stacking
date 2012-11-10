@@ -177,20 +177,6 @@ class TestNode < Test::Unit::TestCase
     @node.arg2.arg1 = Node.new(:cs)    
     assert_equal("eq (ms (nn)), (mt (cs))", @node.to_s)
   end
-
-  def test_node?
-    node = Node.new(:ms)
-    node.arg1 = Node.new(:nn)
-    assert(node.node?)
-    
-    node = Node.new(:eq)
-    node.arg1 = Node.new(:nn)
-    node.arg2 = Node.new(:nn)
-    assert(node.node?)
-    
-    node = Node.new(:cs)
-    assert_equal(false, node.node?)
-  end
   
   def test_leaf?
     node = Node.new(:nn)
@@ -211,23 +197,6 @@ class TestNode < Test::Unit::TestCase
     # puts "child2 #{child2}"
     assert_not_equal(tree1.to_s, tree2.to_s)
     assert_not_equal(child1.to_s, child2.to_s)
-  end
-
-  def test_node_type
-    [:cs, :tb, :nn].each do |operation|
-      node = Node.new(operation)
-      assert_equal(:terminal, node.node_type)
-    end
-
-    [:ms, :mt, :not].each do |operation|
-      node = Node.new(operation)
-      assert_equal(:one_arg, node.node_type)
-    end
-
-    [:du, :eq].each do |operation|
-      node = Node.new(operation)
-      assert_equal(:two_args, node.node_type)
-    end
   end
   
   def setup_tree

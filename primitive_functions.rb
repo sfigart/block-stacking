@@ -38,11 +38,16 @@ module PrimitiveFunctions
     counter =0
     result = false
     while (!result) do
+      @log.debug("counter b: #{counter}")
       x.execute(self)
       result = y.execute(self)
       counter += 1
-      break if counter > 100 # Prevent infinite loop
+      @log.debug("counter a: #{counter}")
+      break if counter > 25 # Prevent infinite loop
     end
+    
+    @log.debug("broke out of loop: #{counter}") if counter > 25
+
     result
   end
 end

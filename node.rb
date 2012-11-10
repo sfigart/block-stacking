@@ -9,6 +9,9 @@ class Node
     @operation = operation
     @arg1 = arg1
     @arg2 = arg2
+    
+    @du_iteration_count = 0
+    @du_iteration_limit = 100
   end
   
   def depth_count
@@ -70,15 +73,17 @@ class Node
       method = board.method(@operation)
       method.call( @arg1.execute(board), @arg2.execute(board) )
     when :du
+      @du_iteration_count += 1
+      @log.debug "!!!!!!!#{self} #{@du_iteration_count}"
+      
+      if @du_iteration_count >= @du_iteration_limit
+        @log.debug "********* max iterations reached #{@du_iteration_count}"
+        return true
+      end
       method = board.method(@operation)
       #  :du must repeatedly call arg1 and arg2
       method.call( @arg1, @arg2 )
     end    
-  end
-  
-  def node?
-    return false if arg1.nil? && arg2.nil?
-    true
   end
   
   # No args
@@ -93,17 +98,6 @@ class Node
     output << " (#{@arg1})" if arg1
     output << ", (#{@arg2})" if arg2
     output
-  end
-  
-  def node_type
-    case @operation
-    when :cs, :tb, :nn
-      :terminal
-    when :ms, :mt, :not
-      :one_arg
-    when :du, :eq
-      :two_args
-    end
   end
 
   #private
