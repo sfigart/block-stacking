@@ -13,7 +13,7 @@ class Board
 
   def initialize(goal_chars,stack_chars, table_chars)
     @log = Logger.new(STDOUT)
-    @log.level = Logger::DEBUG
+    @log.level = Logger::FATAL
     
     @goal  = goal_chars.nil?  ? [] : goal_chars.split('')
     @stack = stack_chars.nil? ? [] : stack_chars.split('')

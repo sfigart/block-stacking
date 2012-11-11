@@ -174,6 +174,10 @@ class TestBoard < Test::Unit::TestCase
     x = ['a']
     result = @board.not(x)
     assert_equal(false, result)
+    
+    x = true
+    result = @board.not(x)
+    assert_equal(false, result)
   end
   
   def display

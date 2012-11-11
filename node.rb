@@ -2,9 +2,11 @@ require 'logger'
 
 class Node
   attr_accessor :operation, :arg1, :arg2
+  attr_reader   :du_iteration_count, :du_iteration_limit
+  
   def initialize(operation, arg1=nil, arg2=nil)
     @log = Logger.new(STDOUT)
-    @log.level = Logger::DEBUG
+    @log.level = Logger::FATAL
     
     @operation = operation
     @arg1 = arg1
@@ -30,11 +32,16 @@ class Node
   end
   
   def crossover(other)
-    return nil, nil if self.leaf? || other.leaf?
+    @log.info("node.crossover")
     
+    @log.debug("  crossover self : #{self.to_s}")
+    @log.debug("  crossover other: #{other.to_s}")
     # Deep clone self and other
     child1 = deep_clone
     child2 = other.deep_clone
+
+    @log.debug("  crossover child1: #{child1.to_s}")
+    @log.debug("  crossover child2: #{child2.to_s}")
         
     child1_node = child1.get_random_node
     child2_node = child2.get_random_node
@@ -54,9 +61,9 @@ class Node
     @log.debug "after swap"
     @log.debug "child1_node #{child1_node.inspect}"
     @log.debug "child2_node #{child2_node.inspect}"
-    @log.debug "child1 #{child1.inspect}"
-    @log.debug "child2 #{child2.inspect}"
 =end
+    @log.debug "  child1 #{child1}"
+    @log.debug "  child2 #{child2}"
 
     return child1, child2
   end
@@ -65,13 +72,20 @@ class Node
     case @operation
     when :cs, :tb, :nn # Terminal arguments, do nothing
       nil
+      
     when :ms, :mt, :not # One arg functions, execute these
       method = board.method(@operation)
-      arg1   = board.method(@arg1.operation)
-      method.call( arg1.call )
+      if [:cs, :tb, :nn].include?(@arg1.operation)
+        arg1   = board.method(@arg1.operation)
+        method.call( arg1.call ) 
+      else
+        method.call(@arg1.execute(board))
+      end
+    
     when :eq
       method = board.method(@operation)
       method.call( @arg1.execute(board), @arg2.execute(board) )
+    
     when :du
       return true if @du_iteration_count >= @du_iteration_limit
       @du_iteration_count += 1
@@ -119,6 +133,6 @@ class Node
   end
   
   def marshal_load(array)
-    @operation, @arg1, @arg2 = array
+    initialize(*array)
   end
 end

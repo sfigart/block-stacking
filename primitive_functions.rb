@@ -24,6 +24,7 @@ module PrimitiveFunctions
   
   # returns T if x=F, else returns F
   def not(x)
+    return !x if x.is_a?(TrueClass || x.is_a?(FalseClass))
     return true if x == false || x.nil? || x.empty?
     return false
   end

@@ -18,6 +18,12 @@ class TestProgram < Test::Unit::TestCase
     @program.add_score(25)
   end
   
+  def test_program
+    not_ms_cs = Node.new(:not, Node.new(:ms, Node.new(:cs)))
+    @program = Program.new(not_ms_cs, @board)
+    @program.execute
+  end
+
   def test_raw_fitness
     setup_fitness
     score = @program.scores.inject(0, :+)
