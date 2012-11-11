@@ -1,13 +1,12 @@
-require 'logger'
+require_relative 'logging'
 
 class Node
+  include Logging
+  
   attr_accessor :operation, :arg1, :arg2
   attr_reader   :du_iteration_count, :du_iteration_limit
   
-  def initialize(operation, arg1=nil, arg2=nil)
-    @log = Logger.new(STDOUT)
-    @log.level = Logger::FATAL
-    
+  def initialize(operation, arg1=nil, arg2=nil)  
     @operation = operation
     @arg1 = arg1
     @arg2 = arg2
@@ -32,25 +31,25 @@ class Node
   end
   
   def crossover(other)
-    @log.info("node.crossover")
+    logger.info("node.crossover")
     
-    @log.debug("  crossover self : #{self.to_s}")
-    @log.debug("  crossover other: #{other.to_s}")
+    logger.debug("  crossover self : #{self.to_s}")
+    logger.debug("  crossover other: #{other.to_s}")
     # Deep clone self and other
     child1 = deep_clone
     child2 = other.deep_clone
 
-    @log.debug("  crossover child1: #{child1.to_s}")
-    @log.debug("  crossover child2: #{child2.to_s}")
+    logger.debug("  crossover child1: #{child1.to_s}")
+    logger.debug("  crossover child2: #{child2.to_s}")
         
     child1_node = child1.get_random_node
     child2_node = child2.get_random_node
     
 =begin    
-    @log.debug "child1 #{child1.inspect}"
-    @log.debug "child2 #{child2.inspect}"
-    @log.debug "child1_node #{child1_node.inspect}"
-    @log.debug "child2_node #{child2_node.inspect}"
+    logger.debug "child1 #{child1.inspect}"
+    logger.debug "child2 #{child2.inspect}"
+    logger.debug "child1_node #{child1_node.inspect}"
+    logger.debug "child2_node #{child2_node.inspect}"
 =end
     # Swap by attribute to keep parent object references intact
     child1_node.operation, child2_node.operation = child2_node.operation, child1_node.operation
@@ -58,12 +57,12 @@ class Node
     child1_node.arg2,      child2_node.arg2      = child2_node.arg2,      child1_node.arg2
     
 =begin    
-    @log.debug "after swap"
-    @log.debug "child1_node #{child1_node.inspect}"
-    @log.debug "child2_node #{child2_node.inspect}"
+    logger.debug "after swap"
+    logger.debug "child1_node #{child1_node.inspect}"
+    logger.debug "child2_node #{child2_node.inspect}"
 =end
-    @log.debug "  child1 #{child1}"
-    @log.debug "  child2 #{child2}"
+    logger.debug "  child1 #{child1}"
+    logger.debug "  child2 #{child2}"
 
     return child1, child2
   end
@@ -92,7 +91,7 @@ class Node
       method = board.method(@operation)
       #  :du must repeatedly call arg1 and arg2
       method.call( @arg1, @arg2 )
-    end    
+    end  
   end
   
   # No args

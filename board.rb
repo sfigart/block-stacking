@@ -1,8 +1,9 @@
-require 'logger'
+require_relative 'logging'
 require_relative 'terminal_arguments'
 require_relative 'primitive_functions'
 
 class Board
+  include Logging
   include TerminalArguments
   include PrimitiveFunctions
   
@@ -11,10 +12,7 @@ class Board
   
   DISTANCE_PENALTY = 25
 
-  def initialize(goal_chars,stack_chars, table_chars)
-    @log = Logger.new(STDOUT)
-    @log.level = Logger::FATAL
-    
+  def initialize(goal_chars,stack_chars, table_chars)  
     @goal  = goal_chars.nil?  ? [] : goal_chars.split('')
     @stack = stack_chars.nil? ? [] : stack_chars.split('')
     @table = table_chars.nil? ? [] : table_chars.split('')

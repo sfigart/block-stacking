@@ -1,12 +1,11 @@
-require 'logger'
+require_relative 'logging'
 
 class Program
+  include Logging
+    
   attr_reader :node, :scores, :boards
   
-  def initialize(node=nil, boards=[])
-    @log = Logger.new(STDOUT)
-    @log.level = Logger::FATAL
-    
+  def initialize(node=nil, boards=[])  
     @node = node
     @boards = [*boards]
     @scores = []
@@ -19,30 +18,25 @@ class Program
   # This method performs asexual reproduction
   # with a cross over with itself
   def reproduce
-    @log.info("program.reproduce")
     # Reproduce with self
     new_node1, new_node2 = @node.crossover(@node)
     node = [new_node1, new_node2].sample
-    @log.debug("  node: #{node}")
     Program.new(node, Board.load_test_cases)
   end
   
   def crossover(other_program)
-    @log.info("program.crossover")
-    @log.debug("  node: #{@node}")
-    @log.debug("  other_program.node: #{other_program.node}")
     new_node1, new_node2 = @node.crossover(other_program.node)
-    @log.debug("  new_node1: #{new_node1}")
-    @log.debug("  new_node2: #{new_node2}")
     return Program.new(new_node1, Board.load_test_cases),
            Program.new(new_node2, Board.load_test_cases)
   end
   
   def execute
-    @log.debug "program.execute Program: #{@node} - node is nil?#{@node.nil?}"
+    logger.info("program.execute #{self.display}")
     @scores = []
-    @boards.each do |board|
+    @boards.each_with_index do |board, index|
+      logger.debug("  #{index} before #{board}")
       @node.execute(board)
+      logger.debug("  #{index} after  #{board}")
       add_score(board.score)
     end
   end

@@ -1,18 +1,16 @@
-require 'logger'
+require_relative 'logging'
 require_relative 'program_generator'
 require_relative 'board'
 require_relative 'node'
 require_relative 'program'
 
 class World
+  include Logging
   include ProgramGenerator
   
   attr_accessor :programs
   
-  def initialize(program_count=1)
-    @log = Logger.new(STDOUT)
-    @log.level = Logger::FATAL
-    
+  def initialize(program_count=1)    
     @generation_limit = 51
     @generation_count = 0
     
@@ -25,35 +23,74 @@ class World
   end
   
   def run
-    @log.info("run generation: #{@generation_count}")
+    logger.info("run generation: #{@generation_count}")
     found = false
     while !found && @generation_count < @generation_limit
       found = run_generation
     end
     
-    @log.info "Found: #{found}, generation_count : #{@generation_count}"
+    logger.fatal "Found: #{found}, generation_count : #{@generation_count}"
   end
   
   def run_generation
-    @log.info("run_generation #{@generation_count} programs size: #{@programs.size}")
+    logger.info("run_generation #{@generation_count} programs size: #{@programs.size}")
     @generation_count += 1
-    evaluate  
-    @programs = next_generation
-    
     evaluate
-    found = solution_found?
+
+    return true if solution_found?
+     
+    @programs = next_generation
+    false # Didn't find a solution
   end
   
   def next_generation
-    @log.info("next_generation")
-    @sorted = sort_by_probability
+    logger.info("next_generation")
+    sorted_programs = sort_by_probability
     new_programs = []
-    new_programs.concat( crossover )
-    new_programs.each_with_index do |program, index|
-      @log.debug"  #{index}: nil program? #{program.node.nil?} #{program.display}"
-    end
-    new_programs.concat( fitness_proportionate )
+    new_programs.concat( crossover( sorted_programs ) )
+    new_programs.concat( fitness_proportionate( sorted_programs ) )
     new_programs
+  end
+  
+  # Use 90% of the population and create 2 children
+  def crossover(sorted_programs)
+    logger.info("world.crossover")
+    pairs_to_select = ((sorted_programs.size * 0.9) / 2).floor # 90%, 1/2 because processing as pairs
+    children = []
+    paired_programs = sorted_programs.each_slice(2).to_a
+    for i in 0..pairs_to_select - 1
+      logger.debug("  pair[#{i}][0]: #{paired_programs[i][0].display}")
+      logger.debug("  pair[#{i}][1]: #{paired_programs[i][1].display}")
+      program1, program2 = paired_programs[i][0].crossover(paired_programs[i][1])
+      logger.debug("  program1: #{program1.display}")
+      logger.debug("  program2: #{program2.display}")
+      children << program1
+      children << program2
+    end
+    logger.debug "  children size: #{children.size}"
+    children
+  end
+  
+  def evaluate
+    logger.info("world.evaluate generation: #{@generation_count}")
+    @programs.each_with_index do |program, index|
+      logger.debug("  calling program #{program.display}")
+      program.execute
+    end
+  end 
+  
+  def fitness_proportionate(sorted_programs)
+    logger.info("fitness_proportionate")
+    children = []
+    num_to_select = (sorted_programs.size * 0.1).to_i
+    num_to_select = 1 if num_to_select == 0
+    
+    logger.debug("  num_to_select #{num_to_select}")
+    for i in 0..num_to_select - 1
+      children << sorted_programs[i].reproduce
+    end
+    logger.debug "  children size: #{children.size}"
+    children
   end
   
   def solution_found?
@@ -61,44 +98,8 @@ class World
     scores.min == 0 ? true : false
   end
   
-  # Use 90% of the population and create 2 children
-  def crossover
-    @log.info("world.crossover")
-    pairs_to_select = ((@sorted.size * 0.9) / 2).floor # 90%, 1/2 because processing as pairs
-    children = []
-    paired_programs = @sorted.each_slice(2).to_a
-    for i in 0..pairs_to_select - 1
-      @log.debug("  pair[#{i}][0]: #{paired_programs[i][0].display}")
-      @log.debug("  pair[#{i}][1]: #{paired_programs[i][1].display}")
-      program1, program2 = paired_programs[i][0].crossover(paired_programs[i][1])
-      @log.debug("  program1: #{program1.display}")
-      @log.debug("  program2: #{program2.display}")
-      children << program1
-      children << program2
-    end
-    @log.debug "  children size: #{children.size}"
-    children
-  end
-  
-  def fitness_proportionate
-    @log.info("fitness_proportionate")
-    children = []
-    num_to_select = (@sorted.size * 0.1).floor + 1 # 10%
-    @log.debug("  num_to_select #{num_to_select}")
-    for i in 0..num_to_select - 1
-      children << @sorted[i].reproduce
-    end
-    @log.debug "  children size: #{children.size}"
-    children
-  end
-  
-  def evaluate
-    @log.info("evaluate")
-    @programs.each_with_index { |program, index| program.execute }
-  end
-  
   def sort_by_probability
-    @log.info("sort_by_probability")
+    logger.info("sort_by_probability")
     total_fitness = @programs.map(&:adjusted_fitness).inject(:+)
 
     # Sort in descending order (Largest to smallest)
