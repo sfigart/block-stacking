@@ -36,14 +36,16 @@ class Program
     @boards.each_with_index do |board, index|
       logger.debug("  #{index} before #{board}")
       @node.execute(board)
-      logger.debug("  #{index} after  #{board}")
+      logger.debug("  #{index} after  #{board} : score #{board.score}")
       add_score(board.score)
     end
   end
   
   # Smaller is better (0 = perfect)
   def raw_fitness
-    @scores.inject(0, :+)
+    sum_scores = @scores.inject(0, :+)
+    program_size_penalty = @node.depth_count * 100
+    return sum_scores + program_size_penalty
   end
   
   # Larger is better (range is between 0 and 1)
@@ -62,5 +64,9 @@ class Program
   
   def display
     node.to_s
+  end
+  
+  def display_scores
+    "raw: #{raw_fitness}, adjusted: #{adjusted_fitness}, depth: #{@node.depth_count}, count: #{@node.count}"
   end
 end

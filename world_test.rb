@@ -8,9 +8,9 @@ class TestWorld < Test::Unit::TestCase
     @world = World.new(10)
   end
   
-  def test_initialize
-    assert_equal(10, @world.programs.count)
-  end
+#  def test_initialize
+#    assert_equal(10, @world.programs.count)
+#  end
   
 #  def test_run
 #    @world.run

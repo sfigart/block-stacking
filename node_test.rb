@@ -184,15 +184,6 @@ class TestNode < Test::Unit::TestCase
     assert_equal("eq (ms (nn)), (mt (cs))", @node.to_s)
   end
   
-  def test_leaf?
-    node = Node.new(:nn)
-    assert(node.leaf?)
-
-    node = Node.new(:ms)
-    node.arg1 = Node.new(:nn)
-    assert_equal(false, node.leaf?)
-  end
-  
   def test_crossover
     tree1 = Node.new(:ms, Node.new(:cs))
     tree2 = Node.new(:mt, Node.new(:nn))

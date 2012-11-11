@@ -27,28 +27,30 @@ class World
     found = false
     while !found && @generation_count < @generation_limit
       found = run_generation
+      @programs = next_generation unless found
     end
     
     logger.fatal "Found: #{found}, generation_count : #{@generation_count}"
+    
   end
   
   def run_generation
-    logger.info("run_generation #{@generation_count} programs size: #{@programs.size}")
+    logger.warn("run_generation #{@generation_count} programs size: #{@programs.size}")
     @generation_count += 1
     evaluate
+    @sorted_programs = sort_by_probability
+    best = @sorted_programs.first
+    logger.warn("  best program: #{best.display_scores}")
 
     return true if solution_found?
-     
-    @programs = next_generation
     false # Didn't find a solution
   end
   
   def next_generation
     logger.info("next_generation")
-    sorted_programs = sort_by_probability
     new_programs = []
-    new_programs.concat( crossover( sorted_programs ) )
-    new_programs.concat( fitness_proportionate( sorted_programs ) )
+    new_programs.concat( crossover( @sorted_programs ) )
+    new_programs.concat( fitness_proportionate( @sorted_programs ) )
     new_programs
   end
   

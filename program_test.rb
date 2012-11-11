@@ -13,7 +13,7 @@ class TestProgram < Test::Unit::TestCase
   end
 
   def setup_fitness
-    @program = Program.new
+    @program = Program.new(Node.new(:cs))
     @program.add_score(25)
     @program.add_score(25)
   end
@@ -28,12 +28,14 @@ class TestProgram < Test::Unit::TestCase
     setup_fitness
     score = @program.scores.inject(0, :+)
     assert_equal(50, score)
-    assert_equal(score, @program.raw_fitness)
+    size_penalty = 100
+    assert_equal(score + size_penalty, @program.raw_fitness)
   end
   
   def test_adjusted_fitness
     setup_fitness
-    assert_in_delta(0.019607843, @program.adjusted_fitness, 0.000000001)
+    #assert_in_delta(0.019607843, @program.adjusted_fitness, 0.000000001)
+    assert_in_delta(0.0066225165, @program.adjusted_fitness, 0.000000001)
   end
   
   def test_normalized_fitness

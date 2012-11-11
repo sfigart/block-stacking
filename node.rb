@@ -12,12 +12,12 @@ class Node
     @arg2 = arg2
     
     @du_iteration_count = 0
-    @du_iteration_limit = 100
+    @du_iteration_limit = 10
   end
   
   def depth_count
     left = right = 0
-    left += @arg1.depth_count if @arg1 && ![:cs, :tb, :nn].include?(@arg1.operation)
+    left  += @arg1.depth_count if @arg1 && ![:cs, :tb, :nn].include?(@arg1.operation)
     right += @arg2.depth_count if @arg2 && ![:cs, :tb, :nn].include?(@arg2.operation)
 
     return 1 + [left, right].max
@@ -92,12 +92,6 @@ class Node
       #  :du must repeatedly call arg1 and arg2
       method.call( @arg1, @arg2 )
     end  
-  end
-  
-  # No args
-  def leaf?      
-    return true if arg1.nil? && arg2.nil?
-    false
   end
 
   def to_s

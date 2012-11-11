@@ -42,7 +42,12 @@ module PrimitiveFunctions
       x.execute(self)
       result = y.execute(self)
       counter += 1
-      break if counter > 25 # Prevent infinite loop
+      
+      # Prevent infinite loop
+      if counter > 25
+        result = true
+        break
+      end
     end
     result
   end

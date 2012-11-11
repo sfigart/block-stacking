@@ -32,6 +32,22 @@ class TestBoard < Test::Unit::TestCase
     assert_equal(0, @board.score)
   end
   
+  def test_score_nothing_right
+    board = Board.new('universal', '', 'universal')
+    assert_equal(225, 'universal'.size * Board::DISTANCE_PENALTY)
+    assert_equal('universal'.size * Board::DISTANCE_PENALTY, board.score)
+  end
+  
+  def test_score_somthing_in_stack
+    board = Board.new('universal', 'inu', 'versal')
+    # i - u = 12
+    # n - n = 0
+    # u - i = 12
+    # versal.size * 25 = 150
+    # total = 12 + 0 + 12 + 150 = 174
+    assert_equal(12 + 0 + 12 + 150, board.score)
+  end
+  
   def test_sort
     board2 = Board.new('def','f','de')
     boards = [board2, @board].sort
