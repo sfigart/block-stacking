@@ -50,7 +50,7 @@ class Board
     self.key <=> other.key
   end
   
-  def self.load_test_cases(goal='universal', filename='boards.csv')
+  def self.load_test_cases(goal='universal', filename='boards2.csv')
     boards = []
     File.open(filename).each do |line|
       stack, table = line.chomp.split(',')

@@ -1,0 +1,202 @@
+  1 best: raw: 15389, adjusted: 0.00006, depth: 1, count: 2
+  2 best: raw: 13964, adjusted: 0.00007, depth: 3, count: 8
+  3 best: raw: 12489, adjusted: 0.00008, depth: 4, count: 9
+  4 best: raw: 12389, adjusted: 0.00008, depth: 3, count: 8
+  5 best: raw: 11064, adjusted: 0.00009, depth: 4, count: 11
+  6 best: raw: 11064, adjusted: 0.00009, depth: 4, count: 12
+  7 best: raw: 10214, adjusted: 0.00010, depth: 5, count: 16
+  8 best: raw: 9639, adjusted: 0.00010, depth: 13, count: 33
+  9 best: raw: 9314, adjusted: 0.00011, depth: 7, count: 23
+ 10 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 37
+ 11 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 37
+ 12 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 37
+ 13 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 37
+ 14 best: raw: 9139, adjusted: 0.00011, depth: 8, count: 34
+ 15 best: raw: 9139, adjusted: 0.00011, depth: 7, count: 27
+ 16 best: raw: 9139, adjusted: 0.00011, depth: 8, count: 41
+ 17 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 32
+ 18 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 40
+ 19 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 38
+ 20 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 34
+ 21 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 33
+ 22 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 33
+ 23 best: raw: 9139, adjusted: 0.00011, depth: 8, count: 39
+ 24 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 32
+ 25 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 33
+ 26 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 33
+ 27 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 40
+ 28 best: raw: 9039, adjusted: 0.00011, depth: 6, count: 26
+ 29 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 33
+ 30 best: raw: 9039, adjusted: 0.00011, depth: 6, count: 24
+ 31 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 37
+ 32 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 37
+ 33 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 38
+ 34 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 44
+ 35 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 42
+ 36 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 38
+ 37 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 38
+ 38 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 36
+ 39 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 39
+ 40 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 54
+ 41 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 52
+ 42 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 57
+ 43 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 31
+ 44 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 57
+ 45 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 53
+ 46 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 35
+ 47 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 34
+ 48 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 42
+ 49 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 45
+ 50 best: raw: 9039, adjusted: 0.00011, depth: 7, count: 39
+ 51 best: raw: 8939, adjusted: 0.00011, depth: 6, count: 35
+F, [2012-11-14T21:18:33.601966 #62293] FATAL -- : Found: false, generation_count : 51
+F, [2012-11-14T21:18:33.602471 #62293] FATAL -- : scores: raw: 8939, adjusted: 0.00011, depth: 6, count: 35
+F, [2012-11-14T21:18:33.602631 #62293] FATAL -- : program: eq (eq (eq (ms (ms (ms (nn)))), (eq (ms (nn)), (ms (ms (nn))))), (ms (eq (ms (nn)), (eq (nn), (ms (nn)))))), (eq (eq (ms (nn)), (ms (nn))), (eq (eq (ms (ms (nn))), (ms (nn))), (nn)))
+F, [2012-11-14T21:18:33.602676 #62293] FATAL -- : 0: universal 
+F, [2012-11-14T21:18:33.602799 #62293] FATAL -- : 1: universal 
+F, [2012-11-14T21:18:33.602913 #62293] FATAL -- : 2: universal 
+F, [2012-11-14T21:18:33.603026 #62293] FATAL -- : 3: universal 
+F, [2012-11-14T21:18:33.603140 #62293] FATAL -- : 4: universal 
+F, [2012-11-14T21:18:33.603405 #62293] FATAL -- : 5: universal 
+F, [2012-11-14T21:18:33.603550 #62293] FATAL -- : 6: universal 
+F, [2012-11-14T21:18:33.603692 #62293] FATAL -- : 7: universal 
+F, [2012-11-14T21:18:33.603882 #62293] FATAL -- : 8: universal 
+F, [2012-11-14T21:18:33.604092 #62293] FATAL -- : 9: universal 
+F, [2012-11-14T21:18:33.604129 #62293] FATAL -- : 10: lu niversa
+F, [2012-11-14T21:18:33.604241 #62293] FATAL -- : 11: uln iversa
+F, [2012-11-14T21:18:33.604357 #62293] FATAL -- : 12: unli versa
+F, [2012-11-14T21:18:33.604474 #62293] FATAL -- : 13: unilv ersa
+F, [2012-11-14T21:18:33.604587 #62293] FATAL -- : 14: univle rsa
+F, [2012-11-14T21:18:33.604700 #62293] FATAL -- : 15: univelr sa
+F, [2012-11-14T21:18:33.604813 #62293] FATAL -- : 16: univerls a
+F, [2012-11-14T21:18:33.604926 #62293] FATAL -- : 17: universla 
+F, [2012-11-14T21:18:33.605039 #62293] FATAL -- : 18: universal 
+F, [2012-11-14T21:18:33.605152 #62293] FATAL -- : 19: univarse l
+F, [2012-11-14T21:18:33.605265 #62293] FATAL -- : 20: universal 
+F, [2012-11-14T21:18:33.605377 #62293] FATAL -- : 21: universal 
+F, [2012-11-14T21:18:33.605490 #62293] FATAL -- : 22: universal 
+F, [2012-11-14T21:18:33.605603 #62293] FATAL -- : 23: univesr la
+F, [2012-11-14T21:18:33.605716 #62293] FATAL -- : 24: unresiv la
+F, [2012-11-14T21:18:33.605829 #62293] FATAL -- : 25: univres la
+F, [2012-11-14T21:18:33.605941 #62293] FATAL -- : 26: universal 
+F, [2012-11-14T21:18:33.606054 #62293] FATAL -- : 27: universal 
+F, [2012-11-14T21:18:33.606168 #62293] FATAL -- : 28: unrive sal
+F, [2012-11-14T21:18:33.606391 #62293] FATAL -- : 29: uniraves l
+F, [2012-11-14T21:18:33.606427 #62293] FATAL -- : 30: uvni slrea
+F, [2012-11-14T21:18:33.606538 #62293] FATAL -- : 31: univeras l
+F, [2012-11-14T21:18:33.606651 #62293] FATAL -- : 32: univsaer l
+F, [2012-11-14T21:18:33.606763 #62293] FATAL -- : 33: universal 
+F, [2012-11-14T21:18:33.606875 #62293] FATAL -- : 34: universal 
+F, [2012-11-14T21:18:33.607028 #62293] FATAL -- : 35: uniarvse l
+F, [2012-11-14T21:18:33.607176 #62293] FATAL -- : 36: universal 
+F, [2012-11-14T21:18:33.607296 #62293] FATAL -- : 37: unerivs la
+F, [2012-11-14T21:18:33.607409 #62293] FATAL -- : 38: universal 
+F, [2012-11-14T21:18:33.607523 #62293] FATAL -- : 39: universal 
+F, [2012-11-14T21:18:33.607637 #62293] FATAL -- : 40: uevsinr la
+F, [2012-11-14T21:18:33.607751 #62293] FATAL -- : 41: universal 
+F, [2012-11-14T21:18:33.607865 #62293] FATAL -- : 42: viuen salr
+F, [2012-11-14T21:18:33.607978 #62293] FATAL -- : 43: univre asl
+F, [2012-11-14T21:18:33.608092 #62293] FATAL -- : 44: universal 
+F, [2012-11-14T21:18:33.608206 #62293] FATAL -- : 45: universal 
+F, [2012-11-14T21:18:33.608318 #62293] FATAL -- : 46: universal 
+F, [2012-11-14T21:18:33.608431 #62293] FATAL -- : 47: uniesvar l
+F, [2012-11-14T21:18:33.608465 #62293] FATAL -- : 48: uniev sarl
+F, [2012-11-14T21:18:33.612948 #62293] FATAL -- : 49: universal 
+F, [2012-11-14T21:18:33.614429 #62293] FATAL -- : 50: unveri als
+F, [2012-11-14T21:18:33.614633 #62293] FATAL -- : 51: uniserva l
+F, [2012-11-14T21:18:33.614779 #62293] FATAL -- : 52: universal 
+F, [2012-11-14T21:18:33.614925 #62293] FATAL -- : 53: univrse al
+F, [2012-11-14T21:18:33.615070 #62293] FATAL -- : 54: universal 
+F, [2012-11-14T21:18:33.615213 #62293] FATAL -- : 55: universal 
+F, [2012-11-14T21:18:33.615356 #62293] FATAL -- : 56: uneriv lsa
+F, [2012-11-14T21:18:33.615499 #62293] FATAL -- : 57: univeasr l
+F, [2012-11-14T21:18:33.615647 #62293] FATAL -- : 58: universal 
+F, [2012-11-14T21:18:33.615722 #62293] FATAL -- : 59: universal 
+F, [2012-11-14T21:18:33.615814 #62293] FATAL -- : 60: univears l
+F, [2012-11-14T21:18:33.615886 #62293] FATAL -- : 61: universal 
+F, [2012-11-14T21:18:33.615959 #62293] FATAL -- : 62: uniev slra
+F, [2012-11-14T21:18:33.616031 #62293] FATAL -- : 63: uienv rlsa
+F, [2012-11-14T21:18:33.798964 #62293] FATAL -- : 64: uin lreasv
+F, [2012-11-14T21:18:33.799064 #62293] FATAL -- : 65: universal 
+F, [2012-11-14T21:18:33.799096 #62293] FATAL -- : 66: universal 
+F, [2012-11-14T21:18:33.799128 #62293] FATAL -- : 67: univre als
+F, [2012-11-14T21:18:33.799160 #62293] FATAL -- : 68: nu ilvsrae
+F, [2012-11-14T21:18:33.799190 #62293] FATAL -- : 69: universal 
+F, [2012-11-14T21:18:33.799221 #62293] FATAL -- : 70: univsre la
+F, [2012-11-14T21:18:33.799251 #62293] FATAL -- : 71: unrive las
+F, [2012-11-14T21:18:33.799281 #62293] FATAL -- : 72: unrivse la
+F, [2012-11-14T21:18:33.799310 #62293] FATAL -- : 73: einvu aslr
+F, [2012-11-14T21:18:33.799340 #62293] FATAL -- : 74: uasrveni l
+F, [2012-11-14T21:18:33.799369 #62293] FATAL -- : 75: vinu sealr
+F, [2012-11-14T21:18:33.799399 #62293] FATAL -- : 76: uin lsvrea
+F, [2012-11-14T21:18:33.799428 #62293] FATAL -- : 77: uivne rlsa
+F, [2012-11-14T21:18:33.799457 #62293] FATAL -- : 78: evnrsaiu l
+F, [2012-11-14T21:18:33.799486 #62293] FATAL -- : 79: universal 
+F, [2012-11-14T21:18:33.799516 #62293] FATAL -- : 80: usvinrae l
+F, [2012-11-14T21:18:33.799545 #62293] FATAL -- : 81: univaser l
+F, [2012-11-14T21:18:33.799575 #62293] FATAL -- : 82: unierv als
+F, [2012-11-14T21:18:33.799604 #62293] FATAL -- : 83: ursneavi l
+F, [2012-11-14T21:18:33.799634 #62293] FATAL -- : 84: uveni slar
+F, [2012-11-14T21:18:33.799663 #62293] FATAL -- : 85: uniev rsal
+F, [2012-11-14T21:18:33.799692 #62293] FATAL -- : 86: universal 
+F, [2012-11-14T21:18:33.799721 #62293] FATAL -- : 87: universal 
+F, [2012-11-14T21:18:33.799750 #62293] FATAL -- : 88: universal 
+F, [2012-11-14T21:18:33.799779 #62293] FATAL -- : 89: unirvsea l
+F, [2012-11-14T21:18:33.799809 #62293] FATAL -- : 90: viunre las
+F, [2012-11-14T21:18:33.799838 #62293] FATAL -- : 91: uin vesarl
+F, [2012-11-14T21:18:33.799867 #62293] FATAL -- : 92: universal 
+F, [2012-11-14T21:18:33.799897 #62293] FATAL -- : 93: uniserv al
+F, [2012-11-14T21:18:33.799926 #62293] FATAL -- : 94: univre las
+F, [2012-11-14T21:18:33.799955 #62293] FATAL -- : 95: univesr al
+F, [2012-11-14T21:18:33.799984 #62293] FATAL -- : 96: universal 
+F, [2012-11-14T21:18:33.800014 #62293] FATAL -- : 97: iernuv als
+F, [2012-11-14T21:18:33.800043 #62293] FATAL -- : 98: universal 
+F, [2012-11-14T21:18:33.800073 #62293] FATAL -- : 99: univre sla
+F, [2012-11-14T21:18:33.800102 #62293] FATAL -- : 100: universal 
+F, [2012-11-14T21:18:33.800131 #62293] FATAL -- : 101: universal 
+F, [2012-11-14T21:18:33.800160 #62293] FATAL -- : 102: uivern sla
+F, [2012-11-14T21:18:33.800190 #62293] FATAL -- : 103: universal 
+F, [2012-11-14T21:18:33.800219 #62293] FATAL -- : 104: universal 
+F, [2012-11-14T21:18:33.800249 #62293] FATAL -- : 105: univsrea l
+F, [2012-11-14T21:18:33.800278 #62293] FATAL -- : 106: unvi lsera
+F, [2012-11-14T21:18:33.800307 #62293] FATAL -- : 107: universal 
+F, [2012-11-14T21:18:33.800336 #62293] FATAL -- : 108: universal 
+F, [2012-11-14T21:18:33.800366 #62293] FATAL -- : 109: universal 
+F, [2012-11-14T21:18:33.800395 #62293] FATAL -- : 110: universal 
+F, [2012-11-14T21:18:33.800424 #62293] FATAL -- : 111: unvi lsaer
+F, [2012-11-14T21:18:33.800453 #62293] FATAL -- : 112: universal 
+F, [2012-11-14T21:18:33.800557 #62293] FATAL -- : 113: unievr las
+F, [2012-11-14T21:18:33.800590 #62293] FATAL -- : 114: universal 
+F, [2012-11-14T21:18:33.800620 #62293] FATAL -- : 115: unvi sealr
+F, [2012-11-14T21:18:33.800650 #62293] FATAL -- : 116: universal 
+F, [2012-11-14T21:18:33.800680 #62293] FATAL -- : 117: univesra l
+F, [2012-11-14T21:18:33.800709 #62293] FATAL -- : 118: universal 
+F, [2012-11-14T21:18:33.800739 #62293] FATAL -- : 119: isurnve la
+F, [2012-11-14T21:18:33.800769 #62293] FATAL -- : 120: universal 
+F, [2012-11-14T21:18:33.800799 #62293] FATAL -- : 121: uniaresv l
+F, [2012-11-14T21:18:33.800829 #62293] FATAL -- : 122: inruves la
+F, [2012-11-14T21:18:33.800858 #62293] FATAL -- : 123: universal 
+F, [2012-11-14T21:18:33.800888 #62293] FATAL -- : 124: unirvse al
+F, [2012-11-14T21:18:33.800918 #62293] FATAL -- : 125: universal 
+F, [2012-11-14T21:18:33.800948 #62293] FATAL -- : 126: uienv lras
+F, [2012-11-14T21:18:33.800977 #62293] FATAL -- : 127: universal 
+F, [2012-11-14T21:18:33.801006 #62293] FATAL -- : 128: universal 
+F, [2012-11-14T21:18:33.801036 #62293] FATAL -- : 129: nu ielarsv
+F, [2012-11-14T21:18:33.801066 #62293] FATAL -- : 130: universal 
+F, [2012-11-14T21:18:33.801095 #62293] FATAL -- : 131: univesar l
+F, [2012-11-14T21:18:33.801124 #62293] FATAL -- : 132: universal 
+F, [2012-11-14T21:18:33.801154 #62293] FATAL -- : 133: universal 
+F, [2012-11-14T21:18:33.801184 #62293] FATAL -- : 134: uniervsa l
+F, [2012-11-14T21:18:33.801214 #62293] FATAL -- : 135: uin lveasr
+F, [2012-11-14T21:18:33.801244 #62293] FATAL -- : 136: uaisvenr l
+F, [2012-11-14T21:18:33.801274 #62293] FATAL -- : 137: univsear l
+F, [2012-11-14T21:18:33.801304 #62293] FATAL -- : 138: universal 
+F, [2012-11-14T21:18:33.801333 #62293] FATAL -- : 139: evurin sla
+F, [2012-11-14T21:18:33.801363 #62293] FATAL -- : 140: universal 
+F, [2012-11-14T21:18:33.801485 #62293] FATAL -- : 141: universal 
+F, [2012-11-14T21:18:33.801516 #62293] FATAL -- : 142: univrsea l
+F, [2012-11-14T21:18:33.801546 #62293] FATAL -- : 143: univre lsa
+F, [2012-11-14T21:18:33.801576 #62293] FATAL -- : 144: univre sal
+F, [2012-11-14T21:18:33.801606 #62293] FATAL -- : 145: universal 
+F, [2012-11-14T21:18:33.801659 #62293] FATAL -- : 146: universal 
+F, [2012-11-14T21:18:33.801689 #62293] FATAL -- : 147: uniavers l

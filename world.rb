@@ -49,7 +49,8 @@ class World
     evaluate
     @sorted_programs = sort_by_probability
     best = @sorted_programs.first
-    puts("#{@generation_count} best: #{best.display_scores} #{best.display}")
+    puts "%3d best: #{best.display_scores}" % @generation_count
+    #puts("#{@generation_count} best: #{best.display_scores} #{best.display}")
 
     return true if solution_found?
     false # Didn't find a solution
@@ -70,11 +71,7 @@ class World
     children = []
     paired_programs = sorted_programs.each_slice(2).to_a
     for i in 0..pairs_to_select - 1
-      logger.debug("  pair[#{i}][0]: #{paired_programs[i][0].display}")
-      logger.debug("  pair[#{i}][1]: #{paired_programs[i][1].display}")
       program1, program2 = paired_programs[i][0].crossover(paired_programs[i][1])
-      logger.debug("  program1: #{program1.display}")
-      logger.debug("  program2: #{program2.display}")
       children << program1
       children << program2
     end
@@ -114,6 +111,6 @@ class World
     total_fitness = @programs.map(&:adjusted_fitness).inject(:+)
 
     # Sort in descending order (Largest to smallest)
-    sorted = @programs.sort_by{|program| program.normalized_fitness(total_fitness)}.reverse!
+    @programs.sort_by{|program| program.normalized_fitness(total_fitness)}.reverse!
   end
 end

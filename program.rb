@@ -15,7 +15,6 @@ class Program
     @boards << board
   end
   
-  
   # This method performs asexual reproduction
   # with a cross over with itself
   def reproduce
