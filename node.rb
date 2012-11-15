@@ -31,39 +31,18 @@ class Node
   end
   
   def crossover(other)
-    logger.info("node.crossover")
-    
-    logger.debug("  crossover self : #{self.to_s}")
-    logger.debug("  crossover other: #{other.to_s}")
     # Deep clone self and other
     child1 = deep_clone
     child2 = other.deep_clone
-
-    logger.debug("  crossover child1: #{child1.to_s}")
-    logger.debug("  crossover child2: #{child2.to_s}")
         
     child1_node = child1.get_random_node
     child2_node = child2.get_random_node
     
-=begin    
-    logger.debug "child1 #{child1.inspect}"
-    logger.debug "child2 #{child2.inspect}"
-    logger.debug "child1_node #{child1_node.inspect}"
-    logger.debug "child2_node #{child2_node.inspect}"
-=end
     # Swap by attribute to keep parent object references intact
     child1_node.operation, child2_node.operation = child2_node.operation, child1_node.operation
     child1_node.arg1,      child2_node.arg1      = child2_node.arg1,      child1_node.arg1
     child1_node.arg2,      child2_node.arg2      = child2_node.arg2,      child1_node.arg2
     
-=begin    
-    logger.debug "after swap"
-    logger.debug "child1_node #{child1_node.inspect}"
-    logger.debug "child2_node #{child2_node.inspect}"
-=end
-    logger.debug "  child1 #{child1}"
-    logger.debug "  child2 #{child2}"
-
     return child1, child2
   end
   

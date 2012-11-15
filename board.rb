@@ -12,7 +12,7 @@ class Board
   
   DISTANCE_PENALTY = 25
 
-  def initialize(goal_chars,stack_chars, table_chars)  
+  def initialize(goal_chars, stack_chars, table_chars)  
     @goal  = goal_chars.nil?  ? [] : goal_chars.split('')
     @stack = stack_chars.nil? ? [] : stack_chars.split('')
     @table = table_chars.nil? ? [] : table_chars.split('')
@@ -36,6 +36,10 @@ class Board
     total += @table.size * DISTANCE_PENALTY
     
     total
+  end
+  
+  def solved?
+    @goal.join == @stack.join
   end
   
   def to_s

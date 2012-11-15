@@ -15,6 +15,7 @@ class Program
     @boards << board
   end
   
+  
   # This method performs asexual reproduction
   # with a cross over with itself
   def reproduce
@@ -44,6 +45,8 @@ class Program
   # Smaller is better (0 = perfect)
   def raw_fitness
     sum_scores = @scores.inject(0, :+)
+    return 0 if sum_scores == 0
+    
     program_size_penalty = @node.depth_count * 100
     return sum_scores + program_size_penalty
   end
@@ -67,6 +70,6 @@ class Program
   end
   
   def display_scores
-    "raw: #{raw_fitness}, adjusted: #{adjusted_fitness}, depth: #{@node.depth_count}, count: #{@node.count}"
+    "raw: #{raw_fitness}, adjusted: %.5f, depth: #{@node.depth_count}, count: #{@node.count}" % adjusted_fitness
   end
 end

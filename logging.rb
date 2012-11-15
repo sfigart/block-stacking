@@ -7,7 +7,7 @@ module Logging
   
   def self.logger
     @logger ||= Logger.new(STDOUT)
-    @logger.level = Logger::WARN
+    @logger.level = Logger::ERROR
     @logger
   end
 end

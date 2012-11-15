@@ -76,7 +76,7 @@ class TestCaseGenerator
 
     need_board = true
     while need_board
-      board = Board.new(@goal[0,length], @goal[-9 + length, 9].split('').shuffle.join)
+      board = Board.new(@goal, @goal[0,length], @goal[-9 + length, 9].split('').shuffle.join)
       if !keys.include?(board.key)
         need_board = false
         return board
@@ -96,11 +96,17 @@ class TestCaseGenerator
     uniq = @boards.uniq{|board|"#{board.stack}:#{board.table}"}
     @log.debug "Total: #{@boards.size}: unique: #{uniq.size}"
   end
+  
+  def complete_random
+    166.times do 
+      @boards << create_board(0)
+    end
+  end
 end
 
 t = TestCaseGenerator.new
-t.test_case_1
-t.test_case_2
-t.test_case_3
-
+#t.test_case_1
+#t.test_case_2
+#t.test_case_3
+t.complete_random
 t.display

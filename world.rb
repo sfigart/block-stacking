@@ -31,7 +31,16 @@ class World
     end
     
     logger.fatal "Found: #{found}, generation_count : #{@generation_count}"
+    display_program(@sorted_programs.first)
     
+  end
+  
+  def display_program(program)
+    logger.fatal "scores: #{program.display_scores}"
+    logger.fatal "program: #{program.display}"
+    program.boards.each_with_index do |board, index|
+      logger.fatal "#{index}: #{board.stack.join} #{board.table.join}"
+    end
   end
   
   def run_generation
@@ -40,7 +49,7 @@ class World
     evaluate
     @sorted_programs = sort_by_probability
     best = @sorted_programs.first
-    logger.warn("  best program: #{best.display_scores}")
+    puts("#{@generation_count} best: #{best.display_scores} #{best.display}")
 
     return true if solution_found?
     false # Didn't find a solution
