@@ -12,11 +12,12 @@ class Node
     @arg2 = arg2
     
     @du_iteration_count = 0
-    @du_iteration_limit = 10
+    @du_iteration_limit = 200
   end
   
   def depth_count
     left = right = 0
+    # Do not count terminal arguments as part of depth
     left  += @arg1.depth_count if @arg1 && ![:cs, :tb, :nn].include?(@arg1.operation)
     right += @arg2.depth_count if @arg2 && ![:cs, :tb, :nn].include?(@arg2.operation)
 
@@ -43,19 +44,28 @@ class Node
     child1_node.arg1,      child2_node.arg1      = child2_node.arg1,      child1_node.arg1
     child1_node.arg2,      child2_node.arg2      = child2_node.arg2,      child1_node.arg2
     
+    if child1.depth_count > 15 || child2.depth_count > 15
+      logger.warn "Depth limit exceeded #{child1.depth_count} #{child2.depth_count}"
+      child1, child2 = crossover(other)
+    end
+    
     return child1, child2
   end
-  
+
   def execute(board)
+    logger.debug("execute: #{self}")
     case @operation
-    when :cs, :tb, :nn # Terminal arguments, do nothing
-      nil
-      
+    when :cs, :tb, :nn # Terminal arguments
+      method = board.method(@operation)
+      method.call
     when :ms, :mt, :not # One arg functions, execute these
+      logger.debug("  #{@operation} arg1.operation #{@arg1.operation}")
       method = board.method(@operation)
       if [:cs, :tb, :nn].include?(@arg1.operation)
         arg1   = board.method(@arg1.operation)
-        method.call( arg1.call ) 
+        result = arg1.call
+        logger.debug("  arg1 call result is #{result}")
+        method.call( result )
       else
         method.call(@arg1.execute(board))
       end
@@ -65,14 +75,21 @@ class Node
       method.call( @arg1.execute(board), @arg2.execute(board) )
     
     when :du
-      return true if @du_iteration_count >= @du_iteration_limit
+      if @du_iteration_count >= @du_iteration_limit
+        logger.warn("du iteration limit exceeded #{@du_iteration_count}")
+        return true
+      end
       @du_iteration_count += 1
       method = board.method(@operation)
       #  :du must repeatedly call arg1 and arg2
       method.call( @arg1, @arg2 )
-    end  
+    end
   end
 
+  def reset
+    @du_iteration_count = 0
+  end
+  
   def to_s
     output = ''
     output << @operation.to_s

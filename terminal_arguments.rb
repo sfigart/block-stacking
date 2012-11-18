@@ -15,7 +15,7 @@ module TerminalArguments
       if @stack[i] == @goal[i]
         top_block = @stack[i]
       else
-        top_block = @stack[i-1] if i > 0   # Return previous stack entry
+        top_block = @stack[i-1] if i > 0 # Return previous stack entry
         break
       end
     end

@@ -1,0 +1,323 @@
+~/code/block_stacking$ ruby world_test.rb 
+Run options: 
+
+# Running tests:
+
+eq (eq (mt (tb)), (eq (du (tb), (tb)), (eq (tb), (tb)))), (du (du (mt (tb)), (eq (cs), (cs))), (eq (mt (tb)), (eq (tb), (tb))))
+ms (nn)
+du (mt (cs)), (mt (nn))
+not (cs)
+ms (nn)
+du (not (cs)), (eq (ms (cs)), (ms (cs)))
+eq (ms (nn)), (ms (tb))
+not (cs)
+not (cs)
+eq (not (cs)), (not (cs))
+mt (nn)
+not (tb)
+eq (eq (ms (cs)), (eq (du (nn), (nn)), (mt (cs)))), (eq (not (tb)), (du (mt (nn)), (eq (cs), (cs))))
+eq (du (eq (ms (cs)), (du (nn), (nn))), (eq (not (nn)), (mt (tb)))), (ms (nn))
+mt (cs)
+mt (cs)
+mt (tb)
+ms (cs)
+not (cs)
+eq (ms (nn)), (du (not (cs)), (ms (nn)))
+ms (nn)
+eq (not (tb)), (eq (eq (du (cs), (cs)), (mt (cs))), (mt (tb)))
+mt (cs)
+not (nn)
+not (nn)
+not (nn)
+du (du (not (nn)), (eq (mt (nn)), (eq (nn), (nn)))), (du (ms (cs)), (mt (cs)))
+mt (tb)
+not (cs)
+mt (tb)
+not (tb)
+du (eq (not (tb)), (du (du (nn), (nn)), (not (tb)))), (du (du (mt (nn)), (not (nn))), (eq (eq (cs), (cs)), (mt (nn))))
+ms (cs)
+mt (tb)
+eq (not (nn)), (not (cs))
+mt (cs)
+eq (eq (mt (cs)), (eq (not (cs)), (du (cs), (cs)))), (eq (du (eq (tb), (tb)), (eq (tb), (tb))), (eq (du (tb), (tb)), (ms (nn))))
+du (mt (tb)), (mt (tb))
+eq (mt (tb)), (du (ms (nn)), (du (eq (tb), (tb)), (not (tb))))
+not (cs)
+du (ms (cs)), (ms (tb))
+ms (cs)
+du (mt (nn)), (not (cs))
+eq (eq (eq (eq (tb), (tb)), (mt (nn))), (du (eq (nn), (nn)), (eq (cs), (cs)))), (eq (not (cs)), (du (ms (nn)), (ms (cs))))
+eq (ms (nn)), (du (du (eq (nn), (nn)), (not (nn))), (du (mt (tb)), (mt (cs))))
+eq (eq (du (du (tb), (tb)), (not (tb))), (mt (cs))), (not (tb))
+ms (nn)
+not (cs)
+ms (cs)
+ms (cs)
+du (eq (not (cs)), (mt (tb))), (du (eq (not (nn)), (du (tb), (tb))), (eq (not (nn)), (eq (nn), (nn))))
+mt (nn)
+not (cs)
+eq (du (not (tb)), (du (mt (cs)), (du (cs), (cs)))), (mt (nn))
+mt (tb)
+du (mt (tb)), (ms (nn))
+mt (cs)
+mt (tb)
+ms (cs)
+du (ms (nn)), (mt (cs))
+not (cs)
+ms (cs)
+du (mt (tb)), (ms (cs))
+du (mt (nn)), (eq (eq (du (tb), (tb)), (eq (nn), (nn))), (du (du (cs), (cs)), (not (cs))))
+not (tb)
+du (mt (tb)), (not (nn))
+eq (mt (cs)), (ms (cs))
+eq (eq (ms (nn)), (du (du (tb), (tb)), (du (nn), (nn)))), (eq (du (mt (nn)), (eq (tb), (tb))), (eq (mt (tb)), (not (cs))))
+du (mt (nn)), (not (nn))
+not (tb)
+eq (eq (eq (eq (cs), (cs)), (mt (cs))), (mt (tb))), (du (not (cs)), (eq (not (cs)), (eq (cs), (cs))))
+ms (tb)
+eq (ms (cs)), (not (nn))
+eq (ms (nn)), (eq (du (du (tb), (tb)), (eq (nn), (nn))), (ms (nn)))
+du (eq (du (ms (cs)), (not (nn))), (du (not (cs)), (mt (cs)))), (eq (du (du (tb), (tb)), (du (nn), (nn))), (not (cs)))
+ms (cs)
+mt (cs)
+eq (eq (eq (du (tb), (tb)), (ms (nn))), (not (nn))), (mt (nn))
+ms (tb)
+eq (du (ms (tb)), (eq (mt (nn)), (not (nn)))), (mt (nn))
+mt (tb)
+mt (nn)
+ms (tb)
+not (nn)
+mt (nn)
+not (tb)
+mt (nn)
+eq (eq (du (mt (cs)), (du (cs), (cs))), (not (cs))), (mt (tb))
+not (tb)
+ms (tb)
+du (not (tb)), (ms (nn))
+not (cs)
+not (cs)
+eq (eq (not (tb)), (du (ms (nn)), (eq (nn), (nn)))), (ms (cs))
+not (cs)
+not (tb)
+du (eq (du (eq (cs), (cs)), (ms (tb))), (du (eq (cs), (cs)), (mt (nn)))), (ms (tb))
+du (mt (tb)), (ms (tb))
+du (mt (tb)), (eq (du (ms (cs)), (not (tb))), (eq (du (cs), (cs)), (du (nn), (nn))))
+not (cs)
+ms (cs)
+du (du (eq (ms (cs)), (du (nn), (nn))), (ms (nn))), (du (du (eq (tb), (tb)), (not (nn))), (ms (nn)))
+mt (tb)
+not (cs)
+mt (tb)
+eq (eq (ms (nn)), (eq (not (cs)), (not (nn)))), (not (nn))
+eq (ms (nn)), (eq (ms (nn)), (ms (cs)))
+ms (tb)
+eq (du (eq (eq (nn), (nn)), (eq (cs), (cs))), (du (du (cs), (cs)), (eq (tb), (tb)))), (not (nn))
+mt (tb)
+17:33   1 best: raw: 9394, adjusted: 0.00011, depth: 4, count: 23 Correct Boards: 67 
+17:33   2 best: raw: 8639, adjusted: 0.00012, depth: 4, count: 23 Correct Boards: 74 
+17:33   3 best: raw: 8739, adjusted: 0.00011, depth: 4, count: 9 Correct Boards: 67 
+17:33   4 best: raw: 8739, adjusted: 0.00011, depth: 4, count: 24 Correct Boards: 67 
+17:33   5 best: raw: 8739, adjusted: 0.00011, depth: 4, count: 24 Correct Boards: 67 
+17:34   6 best: raw: 8739, adjusted: 0.00011, depth: 4, count: 24 Correct Boards: 67 
+17:34   7 best: raw: 8739, adjusted: 0.00011, depth: 4, count: 24 Correct Boards: 67 
+17:34   8 best: raw: 8739, adjusted: 0.00011, depth: 4, count: 12 Correct Boards: 67 
+17:35   9 best: raw: 8739, adjusted: 0.00011, depth: 4, count: 12 Correct Boards: 67 
+17:36  10 best: raw: 8739, adjusted: 0.00011, depth: 4, count: 10 Correct Boards: 67 
+17:36  11 best: raw: 8739, adjusted: 0.00011, depth: 4, count: 11 Correct Boards: 67 
+17:37  12 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 8 Correct Boards: 67 
+17:37  13 best: raw: 8739, adjusted: 0.00011, depth: 4, count: 14 Correct Boards: 67 
+17:38  14 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 12 Correct Boards: 67 
+17:39  15 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 10 Correct Boards: 67 
+17:40  16 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 10 Correct Boards: 67 
+17:41  17 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 7 Correct Boards: 67 
+17:42  18 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 7 Correct Boards: 67 
+17:43  19 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 11 Correct Boards: 67 
+17:44  20 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 7 Correct Boards: 67 
+17:45  21 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 10 Correct Boards: 67 
+17:46  22 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 7 Correct Boards: 67 
+17:47  23 best: raw: 8539, adjusted: 0.00012, depth: 2, count: 5 Correct Boards: 67 
+17:49  24 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 6 Correct Boards: 67 
+17:50  25 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 6 Correct Boards: 67 
+17:51  26 best: raw: 8539, adjusted: 0.00012, depth: 2, count: 5 Correct Boards: 67 
+17:52  27 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 6 Correct Boards: 67 
+17:54  28 best: raw: 8539, adjusted: 0.00012, depth: 2, count: 5 Correct Boards: 67 
+17:55  29 best: raw: 8539, adjusted: 0.00012, depth: 2, count: 5 Correct Boards: 67 
+17:57  30 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 6 Correct Boards: 67 
+17:58  31 best: raw: 8539, adjusted: 0.00012, depth: 2, count: 5 Correct Boards: 67 
+18:00  32 best: raw: 8539, adjusted: 0.00012, depth: 2, count: 5 Correct Boards: 67 
+18:01  33 best: raw: 8539, adjusted: 0.00012, depth: 2, count: 5 Correct Boards: 67 
+18:03  34 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 7 Correct Boards: 67 
+18:04  35 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 7 Correct Boards: 67 
+18:06  36 best: raw: 8539, adjusted: 0.00012, depth: 2, count: 5 Correct Boards: 67 
+18:08  37 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 7 Correct Boards: 67 
+18:09  38 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 7 Correct Boards: 67 
+18:11  39 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 6 Correct Boards: 67 
+18:13  40 best: raw: 8539, adjusted: 0.00012, depth: 2, count: 5 Correct Boards: 67 
+18:14  41 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 6 Correct Boards: 67 
+18:16  42 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 6 Correct Boards: 67 
+18:18  43 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 6 Correct Boards: 67 
+18:20  44 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 5 Correct Boards: 67 
+18:22  45 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 5 Correct Boards: 67 
+18:24  46 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 5 Correct Boards: 67 
+18:26  47 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 5 Correct Boards: 67 
+18:28  48 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 6 Correct Boards: 67 
+18:30  49 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 5 Correct Boards: 67 
+18:32  50 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 5 Correct Boards: 67 
+18:34  51 best: raw: 8639, adjusted: 0.00012, depth: 3, count: 5 Correct Boards: 67 
+Found: false, generation_count : 51
+scores: raw: 8639, adjusted: 0.00012, depth: 3, count: 5
+program: du (nn), (ms (ms (nn)))
+0: [universal] []
+1: [universal] []
+2: [universal] []
+3: [universal] []
+4: [universal] []
+5: [universal] []
+6: [universal] []
+7: [universal] []
+8: [universal] []
+9: [universal] []
+10: [lu] [niversa]
+11: [uln] [iversa]
+12: [unli] [versa]
+13: [unilv] [ersa]
+14: [univle] [rsa]
+15: [univelr] [sa]
+16: [univerls] [a]
+17: [universla] []
+18: [universal] []
+19: [univarse] [l]
+20: [universal] []
+21: [universal] []
+22: [universal] []
+23: [univesr] [la]
+24: [unresiv] [la]
+25: [univres] [la]
+26: [universal] []
+27: [universal] []
+28: [unrive] [sal]
+29: [uniraves] [l]
+30: [uvni] [slrea]
+31: [univeras] [l]
+32: [univsaer] [l]
+33: [universal] []
+34: [universal] []
+35: [uniarvse] [l]
+36: [universal] []
+37: [unerivs] [la]
+38: [universal] []
+39: [universal] []
+40: [uevsinr] [la]
+41: [universal] []
+42: [viuen] [salr]
+43: [univre] [asl]
+44: [universal] []
+45: [universal] []
+46: [universal] []
+47: [uniesvar] [l]
+48: [uniev] [sarl]
+49: [universal] []
+50: [unveri] [als]
+51: [uniserva] [l]
+52: [universal] []
+53: [univrse] [al]
+54: [universal] []
+55: [universal] []
+56: [uneriv] [lsa]
+57: [univeasr] [l]
+58: [universal] []
+59: [universal] []
+60: [univears] [l]
+61: [universal] []
+62: [uniev] [slra]
+63: [uienv] [rlsa]
+64: [uin] [lreasv]
+65: [universal] []
+66: [universal] []
+67: [univre] [als]
+68: [nu] [ilvsrae]
+69: [universal] []
+70: [univsre] [la]
+71: [unrive] [las]
+72: [unrivse] [la]
+73: [einvu] [aslr]
+74: [uasrveni] [l]
+75: [vinu] [sealr]
+76: [uin] [lsvrea]
+77: [uivne] [rlsa]
+78: [evnrsaiu] [l]
+79: [universal] []
+80: [usvinrae] [l]
+81: [univaser] [l]
+82: [unierv] [als]
+83: [ursneavi] [l]
+84: [uveni] [slar]
+85: [uniev] [rsal]
+86: [universal] []
+87: [universal] []
+88: [universal] []
+89: [unirvsea] [l]
+90: [viunre] [las]
+91: [uin] [vesarl]
+92: [universal] []
+93: [uniserv] [al]
+94: [univre] [las]
+95: [univesr] [al]
+96: [universal] []
+97: [iernuv] [als]
+98: [universal] []
+99: [univre] [sla]
+100: [universal] []
+101: [universal] []
+102: [uivern] [sla]
+103: [universal] []
+104: [universal] []
+105: [univsrea] [l]
+106: [unvi] [lsera]
+107: [universal] []
+108: [universal] []
+109: [universal] []
+110: [universal] []
+111: [unvi] [lsaer]
+112: [universal] []
+113: [unievr] [las]
+114: [universal] []
+115: [unvi] [sealr]
+116: [universal] []
+117: [univesra] [l]
+118: [universal] []
+119: [isurnve] [la]
+120: [universal] []
+121: [uniaresv] [l]
+122: [inruves] [la]
+123: [universal] []
+124: [unirvse] [al]
+125: [universal] []
+126: [uienv] [lras]
+127: [universal] []
+128: [universal] []
+129: [nu] [ielarsv]
+130: [universal] []
+131: [univesar] [l]
+132: [universal] []
+133: [universal] []
+134: [uniervsa] [l]
+135: [uin] [lveasr]
+136: [uaisvenr] [l]
+137: [univsear] [l]
+138: [universal] []
+139: [evurin] [sla]
+140: [universal] []
+141: [universal] []
+142: [univrsea] [l]
+143: [univre] [lsa]
+144: [univre] [sal]
+145: [universal] []
+146: [universal] []
+147: [uniavers] [l]
+.
+
+Finished tests in 3694.471005s, 0.0003 tests/s, 0.0000 assertions/s.
+
+1 tests, 0 assertions, 0 failures, 0 errors, 0 skips
+~/code/block_stacking$ 

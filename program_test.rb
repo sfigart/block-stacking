@@ -17,7 +17,7 @@ class TestProgram < Test::Unit::TestCase
     @program.add_score(25)
     @program.add_score(25)
   end
-  
+
   def test_program
     not_ms_cs = Node.new(:not, Node.new(:ms, Node.new(:cs)))
     @program = Program.new(not_ms_cs, @board)
@@ -111,5 +111,75 @@ class TestProgram < Test::Unit::TestCase
     assert_equal('abc', board.stack.join)
     assert_equal([], board.table)
     assert_equal(0, program.scores.first)
+  end
+  
+  def test_solution_1
+    # left branch
+    mt_cs_node = Node.new(:mt, Node.new(:cs))
+    not_cs_node = Node.new(:not, Node.new(:cs))
+    du_node = Node.new(:du, mt_cs_node, not_cs_node)
+    
+    #right branch
+    ms_nn_node = Node.new(:ms, Node.new(:nn))
+    not_nn_node = Node.new(:not, Node.new(:nn))
+    du2_node = Node.new(:du, ms_nn_node, not_nn_node)
+    
+    root_node = Node.new(:eq, du_node, du2_node)
+    program = Program.new(root_node, Board.load_test_cases)
+    program.execute
+    #inspect(program)
+    assert_equal(0, program.raw_fitness)
+  end
+  
+  def test_solution_2
+    # Left branch
+    mt_cs = Node.new(:mt, Node.new(:cs))
+    eq_cs_tb = Node.new(:eq, Node.new(:cs), Node.new(:tb))
+    du_node = Node.new(:du, mt_cs, eq_cs_tb)
+    
+    ms_nn = Node.new(:ms, Node.new(:nn))
+    not_nn = Node.new(:not, Node.new(:nn))
+    du_node2 = Node.new(:du, ms_nn, not_nn)
+    
+    eq_node = Node.new(:eq, du_node, du_node2)
+    
+    # Right branch
+    not_nn2 = Node.new(:not, Node.new(:nn))
+    
+    root_node = Node.new(:du, eq_node, not_nn2)
+    
+    program = Program.new(root_node, Board.load_test_cases)
+    program.execute
+    inspect(program)
+    assert_equal(0, program.raw_fitness)
+  end
+
+  def test_solution_2_simple
+    # Left branch
+    mt_cs = Node.new(:mt, Node.new(:cs))
+    eq_cs_tb = Node.new(:eq, Node.new(:cs), Node.new(:tb))
+    du_node = Node.new(:du, mt_cs, eq_cs_tb)
+    
+    ms_nn = Node.new(:ms, Node.new(:nn))
+    not_nn = Node.new(:not, Node.new(:nn))
+    du_node2 = Node.new(:du, ms_nn, not_nn)
+    
+    eq_node = Node.new(:eq, du_node, du_node2)
+    
+    # Right branch
+    not_nn2 = Node.new(:not, Node.new(:nn))
+    
+    root_node = Node.new(:du, eq_node, not_nn2)
+    
+    program = Program.new(root_node, Board.new('universal', 'univeras','l'))
+    program.execute
+    inspect(program)
+    assert_equal(0, program.raw_fitness)
+  end
+  
+  def inspect(program)
+    puts program.display_scores
+    puts program.display
+    program.boards.each_with_index {|board, index| puts "#{index}: #{board}" }
   end
 end

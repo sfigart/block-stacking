@@ -15,6 +15,7 @@ module PrimitiveFunctions
   
   # move to table
   def mt(x)
+    logger.debug("mt  #{x}")
     if @stack.include?(x)
       @table.push @stack.pop
       return true
@@ -31,16 +32,24 @@ module PrimitiveFunctions
   
   # returns T if x equals y, and returns F otherwise
   def eq(x, y)
+    logger.debug("eq")
+    logger.debug("  x: #{x} nil? #{x.nil?}")
+    logger.debug("  y: #{y} nil? #{y.nil?}")
+
     x == y
   end
   
   # executes the expression x repeatedly until expression y returns the value T
   def du(x, y)
+    logger.debug("du")
+    logger.debug("  x: #{x}")
+    logger.debug("  y: #{y}")
     counter =0
     result = false
     while (!result) do
       x.execute(self)
       result = y.execute(self)
+      logger.debug "  result is #{result}"
       counter += 1
       
       # Prevent infinite loop

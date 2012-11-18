@@ -16,6 +16,7 @@ class World
     
     @programs = []
     program_count.times { add_program( generate_random_program) }
+    @programs.each {|program| puts program.display}
   end
   
   def add_program(node)
@@ -30,16 +31,16 @@ class World
       @programs = next_generation unless found
     end
     
-    logger.fatal "Found: #{found}, generation_count : #{@generation_count}"
+    puts "Found: #{found}, generation_count : #{@generation_count}"
     display_program(@sorted_programs.first)
     
   end
   
   def display_program(program)
-    logger.fatal "scores: #{program.display_scores}"
-    logger.fatal "program: #{program.display}"
+    puts "scores: #{program.display_scores}"
+    puts "program: #{program.display}"
     program.boards.each_with_index do |board, index|
-      logger.fatal "#{index}: #{board.stack.join} #{board.table.join}"
+      puts "#{index}: [#{board.stack.join}] [#{board.table.join}]"
     end
   end
   
@@ -49,11 +50,9 @@ class World
     evaluate
     @sorted_programs = sort_by_probability
     best = @sorted_programs.first
-    puts "%3d best: #{best.display_scores}" % @generation_count
-    #puts("#{@generation_count} best: #{best.display_scores} #{best.display}")
-
-    return true if solution_found?
-    false # Didn't find a solution
+    puts "#{Time.now.strftime("%R")} %3d best: #{best.display_scores} Correct Boards: #{best.correct_boards_count} " % @generation_count
+    #puts "#{Time.now.strftime("%I:%M%p")} %3d best: #{best.display_scores}" % @generation_count
+    return solution_found?
   end
   
   def next_generation

@@ -1,6 +1,6 @@
 require_relative 'world'
 # main.rb
-
+=begin
 program2 = Node.new(:du)
 mt_cs = Node.new(:mt, Node.new(:cs))
 not_cs = Node.new(:not, Node.new(:cs))
@@ -21,3 +21,6 @@ program.arg2 = program3
 @world.add_program(program)
 
 puts program.to_s
+=end
+@world = World.new(300)
+@world.run

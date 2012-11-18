@@ -20,7 +20,7 @@ class Program
   def reproduce
     # Reproduce with self
     new_node1, new_node2 = @node.crossover(@node)
-    node = [new_node1, new_node2].sample
+           node = [new_node1, new_node2].sample
     Program.new(node, Board.load_test_cases)
   end
   
@@ -35,6 +35,7 @@ class Program
     @scores = []
     @boards.each_with_index do |board, index|
       logger.debug("  #{index} before #{board}")
+      @node.reset
       @node.execute(board)
       logger.debug("  #{index} after  #{board} : score #{board.score}")
       add_score(board.score)
@@ -70,5 +71,11 @@ class Program
   
   def display_scores
     "raw: #{raw_fitness}, adjusted: %.5f, depth: #{@node.depth_count}, count: #{@node.count}" % adjusted_fitness
+  end
+  
+  def correct_boards_count
+    correct_count = 0
+    boards.each { |board| correct_count +=1 if board.solved? }
+    correct_count
   end
 end
