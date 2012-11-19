@@ -44,7 +44,7 @@ module PrimitiveFunctions
     logger.debug("du")
     logger.debug("  x: #{x}")
     logger.debug("  y: #{y}")
-    counter =0
+    counter = 0
     result = false
     while (!result) do
       x.execute(self)
